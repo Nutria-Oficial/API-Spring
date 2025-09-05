@@ -10,5 +10,6 @@ public class MsNutriaMongodbApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MsNutriaMongodbApplication.class, args);
 	}
+	
 
 }
