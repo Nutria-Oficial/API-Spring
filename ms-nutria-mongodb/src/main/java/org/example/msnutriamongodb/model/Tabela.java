@@ -32,7 +32,7 @@ public class Tabela {
     private double porcao;
 
     @Field(name= "lIngredientes")
-    private ArrayList<Double> listaIngredientes = new ArrayList<>();
+    private List<ItemIngrediente> listaIngredientes = new ArrayList<>();
 
     @Field(name= "lNutrientes")
     private List<String> listaNutrientes = new ArrayList<>();
