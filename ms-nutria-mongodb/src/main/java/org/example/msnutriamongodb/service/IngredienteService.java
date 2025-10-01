@@ -1,7 +1,8 @@
 package org.example.msnutriamongodb.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.msnutriamongodb.dto.GetIngredienteDTO;
+import org.example.msnutriamongodb.dto.RequestIngredienteDTO;
+import org.example.msnutriamongodb.dto.ResponseIngredienteDTO;
 import org.example.msnutriamongodb.exception.DuplicateException;
 import org.example.msnutriamongodb.exception.NotFoundException;
 import org.example.msnutriamongodb.model.Ingrediente;
@@ -21,27 +22,30 @@ public class IngredienteService {
         this.objectMapper = objectMapper;
     }
 
-    public List<GetIngredienteDTO> buscarIngredientesCadastrados(){
+    public List<ResponseIngredienteDTO> buscarIngredientesCadastrados(){
         return ingredienteRepository.findAll()
                 .stream()
-                .map(ingrediente -> objectMapper.convertValue(ingrediente, GetIngredienteDTO.class))
+                .map(ingrediente -> objectMapper.convertValue(ingrediente, ResponseIngredienteDTO.class))
                 .toList();
     }
-    public GetIngredienteDTO buscarIngredientePeloId(Long id){
+    public ResponseIngredienteDTO buscarIngredientePeloId(Integer id){
         Optional<Ingrediente> ingrediente = ingredienteRepository.findById(id);
-        GetIngredienteDTO ingredienteDTO = objectMapper.convertValue(ingrediente, GetIngredienteDTO.class);
+        ResponseIngredienteDTO ingredienteDTO = objectMapper.convertValue(ingrediente, ResponseIngredienteDTO.class);
         if (ingredienteDTO == null){
             throw new NotFoundException("O ingrediente não foi encontrado.");
         }
         return ingredienteDTO;
     }
 
-    public Ingrediente criarIngrediente(Ingrediente ingrediente){
-//        GetIngredienteDTO dto = objectMapper.convertValue(ingrediente, GetIngredienteDTO.class);
+    public ResponseIngredienteDTO criarIngrediente(RequestIngredienteDTO ingredienteDTO){
+        Integer proximoId = ingredienteRepository.findLastIngredienteId() + 1;
+        Ingrediente ingrediente = objectMapper.convertValue(ingredienteDTO, Ingrediente.class);
         boolean ingredienteJaExiste = ingredienteRepository.existsByNomeIngrediente(ingrediente.getNomeIngrediente());
         if (ingredienteJaExiste) {
             throw new DuplicateException("Um ingrediente já foi cadastrado com esse nome.");
         }
-        return ingredienteRepository.save(ingrediente);
+        ingrediente.setId(proximoId);
+        ingredienteRepository.save(ingrediente);
+        return objectMapper.convertValue(ingrediente, ResponseIngredienteDTO.class);
     }
 }

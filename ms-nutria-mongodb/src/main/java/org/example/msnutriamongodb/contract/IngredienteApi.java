@@ -1,6 +1,7 @@
 package org.example.msnutriamongodb.contract;
 
-import org.example.msnutriamongodb.dto.GetIngredienteDTO;
+import org.example.msnutriamongodb.dto.RequestIngredienteDTO;
+import org.example.msnutriamongodb.dto.ResponseIngredienteDTO;
 import org.example.msnutriamongodb.model.Ingrediente;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +11,11 @@ import java.util.List;
 @RequestMapping("/ingredientes")
 public interface IngredienteApi {
     @GetMapping
-    ResponseEntity<List<GetIngredienteDTO>> getAllIngredientes();
+    ResponseEntity<List<ResponseIngredienteDTO>> getAllIngredientes();
 
     @GetMapping("/{id}")
-    ResponseEntity<GetIngredienteDTO> getIngredienteById(@PathVariable Long id);
+    ResponseEntity<ResponseIngredienteDTO> getIngredienteById(@PathVariable Integer id);
 
     @PostMapping
-    ResponseEntity<Ingrediente> criarIngrediente(@RequestBody Ingrediente ingrediente);
+    ResponseEntity<ResponseIngredienteDTO> criarIngrediente(@RequestBody RequestIngredienteDTO ingrediente);
 }

@@ -1,6 +1,7 @@
 package org.example.msnutriamongodb.dto;
 
-public record GetIngredienteDTO(
+public record ResponseIngredienteDTO(
+        Integer id,
         String nomeIngrediente
 ) {
 }

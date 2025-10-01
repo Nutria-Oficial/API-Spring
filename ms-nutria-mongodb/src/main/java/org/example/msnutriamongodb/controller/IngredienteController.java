@@ -1,7 +1,8 @@
 package org.example.msnutriamongodb.controller;
 
 import org.example.msnutriamongodb.contract.IngredienteApi;
-import org.example.msnutriamongodb.dto.GetIngredienteDTO;
+import org.example.msnutriamongodb.dto.RequestIngredienteDTO;
+import org.example.msnutriamongodb.dto.ResponseIngredienteDTO;
 import org.example.msnutriamongodb.model.Ingrediente;
 import org.example.msnutriamongodb.service.IngredienteService;
 import org.springframework.http.HttpStatus;
@@ -19,20 +20,20 @@ public class IngredienteController implements IngredienteApi {
     }
 
     @Override
-    public ResponseEntity<List<GetIngredienteDTO>> getAllIngredientes() {
-        List<GetIngredienteDTO> getIngredienteDTO = ingredienteService.buscarIngredientesCadastrados();
-        return new ResponseEntity<>(getIngredienteDTO, HttpStatus.OK);
+    public ResponseEntity<List<ResponseIngredienteDTO>> getAllIngredientes() {
+        List<ResponseIngredienteDTO> responseIngredienteDTO = ingredienteService.buscarIngredientesCadastrados();
+        return new ResponseEntity<>(responseIngredienteDTO, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<GetIngredienteDTO> getIngredienteById(Long id) {
-        GetIngredienteDTO getIngredienteDTO = ingredienteService.buscarIngredientePeloId(id);
-        return new ResponseEntity<>(getIngredienteDTO, HttpStatus.OK);
+    public ResponseEntity<ResponseIngredienteDTO> getIngredienteById(Integer id) {
+        ResponseIngredienteDTO responseIngredienteDTO = ingredienteService.buscarIngredientePeloId(id);
+        return new ResponseEntity<>(responseIngredienteDTO, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Ingrediente> criarIngrediente(Ingrediente ingrediente) {
-        ingredienteService.criarIngrediente(ingrediente);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<ResponseIngredienteDTO> criarIngrediente(RequestIngredienteDTO ingrediente) {
+        ResponseIngredienteDTO responseIngredienteDTO = ingredienteService.criarIngrediente(ingrediente);
+        return new ResponseEntity<>(responseIngredienteDTO, HttpStatus.OK);
     }
 }
