@@ -18,8 +18,8 @@ import java.util.List;
 public interface ProdutoApi {
 
     @GetMapping(value = "/usuario/{idUsuario}")
-    ResponseEntity<List<GetProdutoDTO>> buscarHistoricoPorUsuario(@PathVariable Long idUsuario);
+    ResponseEntity<List<GetProdutoDTO>> buscarHistoricoPorUsuario(@PathVariable Integer idUsuario);
 
     @GetMapping(value = "/{idProduto}")
-    ResponseEntity<List<GetTabelaDTO>> buscarTabelasPorProduto(@PathVariable Long idProduto);
+    ResponseEntity<List<GetTabelaDTO>> buscarTabelasPorProduto(@PathVariable Integer idProduto);
 }

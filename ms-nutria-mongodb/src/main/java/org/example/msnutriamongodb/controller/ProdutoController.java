@@ -19,7 +19,7 @@ public class ProdutoController implements ProdutoApi {
     }
 
     @Override
-    public ResponseEntity<List<GetProdutoDTO>> buscarHistoricoPorUsuario(Long idUsuario){
+    public ResponseEntity<List<GetProdutoDTO>> buscarHistoricoPorUsuario(Integer idUsuario){
         List<GetProdutoDTO> produtoList = tabelaProdutoService.buscarHistoricoPorUsuario(idUsuario);
         if (produtoList.isEmpty()){
             return new ResponseEntity<>(produtoList, HttpStatus.NO_CONTENT);
@@ -27,7 +27,7 @@ public class ProdutoController implements ProdutoApi {
         return new ResponseEntity<>(produtoList, HttpStatus.OK);
     }
     @Override
-    public ResponseEntity<List<GetTabelaDTO>> buscarTabelasPorProduto(Long idProduto){
+    public ResponseEntity<List<GetTabelaDTO>> buscarTabelasPorProduto(Integer idProduto){
         List<GetTabelaDTO> produtoList = tabelaProdutoService.buscarTabelasPorProduto(idProduto);
         return new ResponseEntity<>(produtoList, HttpStatus.OK);
     }
