@@ -3,7 +3,7 @@ package org.example.msnutriamongodb.dto;
 import java.util.List;
 
 public record GetTabelaDTO(
-        Long tabelaId,
+        Integer tabelaId,
         String nomeTabela,
         double quantidadeTotal,
         double porcao,

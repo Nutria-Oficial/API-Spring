@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TabelaRepository extends MongoRepository<Tabela, Long> {
-    List<Tabela> findAllByIdProduto(Long idProduto);
+public interface TabelaRepository extends MongoRepository<Tabela, Integer> {
+    List<Tabela> findAllByIdProduto(Integer idProduto);
 }

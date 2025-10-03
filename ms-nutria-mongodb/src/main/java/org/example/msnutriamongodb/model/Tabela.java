@@ -17,7 +17,7 @@ import java.util.List;
 public class Tabela {
     @Id
     @Field(name= "_id")
-    private Long id;
+    private Integer id;
 
     @Field(name= "nCdProduto")
     private Long idProduto;
@@ -46,6 +46,7 @@ public class Tabela {
     @Field(name= "lVd")
     private List<Double> listaValorDiario = new ArrayList<>();
 
-    @Field(name= "cAvaliacao")
-    private Character avaliacao;
+    @Field(name= "jAvaliacao")
+    private TabelaAvaliacao avaliacao;
+
 }
