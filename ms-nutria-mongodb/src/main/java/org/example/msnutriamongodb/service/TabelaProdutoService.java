@@ -1,10 +1,6 @@
 package org.example.msnutriamongodb.service;
 
-import org.example.msnutriamongodb.dto.GetNutrienteDTO;
-import org.example.msnutriamongodb.dto.GetProdutoDTO;
-import org.example.msnutriamongodb.dto.GetTabelaDTO;
-import org.example.msnutriamongodb.dto.PostTabelaDTO;
-import org.example.msnutriamongodb.exception.DatabaseInsertException;
+import org.example.msnutriamongodb.dto.*;
 import org.example.msnutriamongodb.exception.NotFoundException;
 import org.example.msnutriamongodb.model.Produto;
 import org.example.msnutriamongodb.model.Tabela;
@@ -12,7 +8,6 @@ import org.example.msnutriamongodb.repository.ProdutoRepository;
 import org.example.msnutriamongodb.repository.TabelaRepository;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
 
 import java.util.*;
 
@@ -30,10 +25,10 @@ public class TabelaProdutoService {
         this.fastApiService = fastApiService;
     }
 
-    public List<GetProdutoDTO> buscarHistoricoPorUsuario(Long idUsuario){
+    public List<GetProdutoDTO> buscarHistoricoPorUsuario(Integer idUsuario){
         return produtoRepository.findAllByIdUsuarioCriacao(idUsuario).stream().map(produto -> new GetProdutoDTO(produto.getNomeProduto())).toList();
     }
-    public List<GetTabelaDTO> buscarTabelasPorProduto(Long idProduto){ //falar com a lívia sobre deixar a mesma requisição para comparação -> vai ter que chamar por produto
+    public List<GetTabelaDTO> buscarTabelasPorProduto(Integer idProduto){
         Optional<Produto> produto = produtoRepository.findById(idProduto);
 
         if (produto.isEmpty()){
@@ -43,11 +38,27 @@ public class TabelaProdutoService {
                 new GetTabelaDTO(tabela.getId(), tabela.getNomeTabela(), tabela.getQuantidadeTotal(),
                         tabela.getPorcao(), buscarPorcaoPorNutriente(tabela.getListaNutrientes(),tabela.getListaTotal(),tabela.getListaPorcao(), tabela.getListaValorDiario()))).toList();
     }
+    public GetTabelaEAvaliacaoDTO buscarTabelaEAvaliacao(Integer idTabela){
+        Optional<Tabela> tabelaEncontrada = tabelaRepository.findById(idTabela);
 
-    public GetTabelaDTO criarTabela(PostTabelaDTO tabelaDTO, long idUsuario) {
-        Long proximoId = produtoRepository.findLastProdutoId() + 1;
-        Produto newProduto = new Produto(proximoId,tabelaDTO.nomeProduto(), new Date(), idUsuario, new Date(), idUsuario);
-        produtoRepository.save(newProduto);
+        if (tabelaEncontrada.isEmpty()){
+            throw new NotFoundException("Tabela não foi encontrada");
+        }
+        Tabela tabela = tabelaEncontrada.get();
+        return new GetTabelaEAvaliacaoDTO(tabela.getId(), tabela.getNomeTabela(), tabela.getQuantidadeTotal(),
+                        tabela.getPorcao(), buscarPorcaoPorNutriente(tabela.getListaNutrientes(),tabela.getListaTotal(),tabela.getListaPorcao(), tabela.getListaValorDiario()), tabela.getAvaliacao());
+    }
+
+    public GetTabelaDTO criarTabela(Integer idProduto, PostTabelaDTO tabelaDTO, long idUsuario) {
+        Integer proximoId;
+        if (idProduto != null){
+            proximoId = idProduto;
+        }
+        else {
+            proximoId = produtoRepository.findLastProdutoId() + 1;
+            Produto newProduto = new Produto(proximoId,tabelaDTO.nomeProduto(), new Date(), idUsuario, new Date(), idUsuario);
+            produtoRepository.save(newProduto);
+        }
 
         String chaveHash = "requisicao_user:" + idUsuario;
         Map<String, Object> tabelaHash = new HashMap<>();
@@ -59,10 +70,8 @@ public class TabelaProdutoService {
 
         redisTemplate.opsForHash().putAll(chaveHash, tabelaHash);
 
-        Mono<String> resposta = fastApiService.criarTabelaNutricional(idUsuario);
-        if (resposta.toString().contains("erro")){
-            throw new DatabaseInsertException(resposta.toString());
-        }
+        fastApiService.criarTabelaNutricional(idUsuario);
+
         Tabela tabela = tabelaRepository.findAllByIdProduto(proximoId).getLast();
         return  new GetTabelaDTO(tabela.getId(), tabela.getNomeTabela(), tabela.getQuantidadeTotal(), tabela.getPorcao(),buscarPorcaoPorNutriente(tabela.getListaNutrientes(),tabela.getListaTotal(),tabela.getListaPorcao(), tabela.getListaValorDiario()));
     }
@@ -73,4 +82,5 @@ public class TabelaProdutoService {
         }
         return  nutrienteDTOList;
     }
+
 }
