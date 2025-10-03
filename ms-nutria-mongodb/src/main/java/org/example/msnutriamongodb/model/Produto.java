@@ -16,7 +16,7 @@ import java.util.Date;
 public class Produto {
     @Id
     @Field(name= "_id")
-    private Long id;
+    private Integer id;
 
     @Field(name = "cNmProduto")
     private String nomeProduto;

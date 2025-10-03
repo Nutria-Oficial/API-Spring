@@ -8,12 +8,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProdutoRepository extends MongoRepository<Produto, Long> {
-    List<Produto> findAllByIdUsuarioCriacao(Long idUsuario);
+public interface ProdutoRepository extends MongoRepository<Produto, Integer> {
+    List<Produto> findAllByIdUsuarioCriacao(Integer idUsuario);
     @Aggregation(pipeline = {
             "{$sort:{_id:-1}}",
             "{$limit:1}",
             "{$project:{_id:1}}"
     })
-    Long findLastProdutoId();
+    Integer findLastProdutoId();
 }
