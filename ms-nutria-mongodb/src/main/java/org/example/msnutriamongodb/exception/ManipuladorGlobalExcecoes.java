@@ -33,4 +33,9 @@ public class ManipuladorGlobalExcecoes {
         ErrorDTO errorDTO = new ErrorDTO(HttpStatus.UNPROCESSABLE_ENTITY.value(), databaseInsertException.getMessage());
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(errorDTO);
     }
+    @ExceptionHandler(JsonSerializationException.class)
+    public ResponseEntity<ErrorDTO> jsonSerializationException(JsonSerializationException jsonSerializationException){
+        ErrorDTO errorDTO = new ErrorDTO(HttpStatus.INTERNAL_SERVER_ERROR.value(), jsonSerializationException.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDTO);
+    }
 }
