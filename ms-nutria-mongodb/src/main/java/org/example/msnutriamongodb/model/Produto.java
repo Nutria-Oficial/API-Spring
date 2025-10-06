@@ -25,11 +25,11 @@ public class Produto {
     private Date dataCriacao;
 
     @Field(name = "nCdUsuarioCriacao")
-    private Long idUsuarioCriacao;
+    private Integer idUsuarioCriacao;
 
     @Field(name = "dUltimaAlteracao")
     private Date dataAlteracao;
 
     @Field(name = "nCdUsuarioUltimaAlteracao")
-    private Long idUsuarioAlteracao;
+    private Integer idUsuarioAlteracao;
 }

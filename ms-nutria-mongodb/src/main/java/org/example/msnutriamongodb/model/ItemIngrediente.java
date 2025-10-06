@@ -1,5 +1,6 @@
 package org.example.msnutriamongodb.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,8 +9,10 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ItemIngrediente {
-    @Field(name= "nCdIngrediente")
-    private Long idIngrediente;
-    @Field(name= "iQuantidade")
+    @JsonProperty("nCdIngrediente")
+    @Field("nCdIngrediente")
+    private Integer idIngrediente;
+    @JsonProperty("iQuantidade")
+    @Field("iQuantidade")
     private double quantidade;
 }
