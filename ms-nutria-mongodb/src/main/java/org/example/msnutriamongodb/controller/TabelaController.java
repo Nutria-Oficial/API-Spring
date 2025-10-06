@@ -18,10 +18,14 @@ public class TabelaController implements TabelaApi {
     }
 
     @Override
-    public ResponseEntity<GetTabelaDTO> criarTabela(Integer idProduto, Integer idUsuario, PostTabelaDTO postTabelaDTO) {
+    public ResponseEntity<GetTabelaDTO> criarTabela(Integer idUsuario, PostTabelaDTO postTabelaDTO) {
+        GetTabelaDTO tabelaDTO = tabelaProdutoService.criarTabela(null,postTabelaDTO,idUsuario);
+        return new ResponseEntity<>(tabelaDTO, HttpStatus.OK);
+    }
+    @Override
+    public ResponseEntity<GetTabelaDTO> adicionarTabela(Integer idUsuario, Integer idProduto, PostTabelaDTO postTabelaDTO) {
         GetTabelaDTO tabelaDTO = tabelaProdutoService.criarTabela(idProduto,postTabelaDTO,idUsuario);
         return new ResponseEntity<>(tabelaDTO, HttpStatus.OK);
-
     }
     @Override
     public ResponseEntity<GetTabelaEAvaliacaoDTO> buscarTabelaComAvaliacao(Integer idTabela) {

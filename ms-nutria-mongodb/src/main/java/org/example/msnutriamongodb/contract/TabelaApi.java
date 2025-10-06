@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/tabelas")
 public interface TabelaApi {
 
-    @PostMapping("/{idProduto}/{idUsuario}")
-    ResponseEntity<GetTabelaDTO> criarTabela(@PathVariable(required = false) Integer idProduto, @PathVariable Integer idUsuario, @Valid @RequestBody PostTabelaDTO postTabelaDTO);
-    @PostMapping("/{idTabela}")
+    @PostMapping("/{idUsuario}")
+    ResponseEntity<GetTabelaDTO> criarTabela(@PathVariable Integer idUsuario, @Valid @RequestBody PostTabelaDTO postTabelaDTO);
+    @PostMapping("/{idUsuario}/{idProduto}")
+    ResponseEntity<GetTabelaDTO> adicionarTabela(@PathVariable Integer idUsuario, @PathVariable Integer idProduto, @Valid @RequestBody PostTabelaDTO postTabelaDTO);
+    @GetMapping("/{idTabela}")
     ResponseEntity<GetTabelaEAvaliacaoDTO> buscarTabelaComAvaliacao(@PathVariable Integer idTabela);
 }

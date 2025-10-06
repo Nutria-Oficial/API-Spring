@@ -1,6 +1,9 @@
 package org.example.msnutriamongodb.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.msnutriamongodb.dto.*;
+import org.example.msnutriamongodb.exception.JsonSerializationException;
 import org.example.msnutriamongodb.exception.NotFoundException;
 import org.example.msnutriamongodb.model.Produto;
 import org.example.msnutriamongodb.model.Tabela;
@@ -49,7 +52,7 @@ public class TabelaProdutoService {
                         tabela.getPorcao(), buscarPorcaoPorNutriente(tabela.getListaNutrientes(),tabela.getListaTotal(),tabela.getListaPorcao(), tabela.getListaValorDiario()), tabela.getAvaliacao());
     }
 
-    public GetTabelaDTO criarTabela(Integer idProduto, PostTabelaDTO tabelaDTO, long idUsuario) {
+    public GetTabelaDTO criarTabela(Integer idProduto, PostTabelaDTO tabelaDTO, Integer idUsuario) {
         Integer proximoId;
         if (idProduto != null){
             proximoId = idProduto;
@@ -60,20 +63,27 @@ public class TabelaProdutoService {
             produtoRepository.save(newProduto);
         }
 
-        String chaveHash = "requisicao_user:" + idUsuario;
-        Map<String, Object> tabelaHash = new HashMap<>();
-        tabelaHash.put("nome_tabela", tabelaDTO.nomeTabela());
-        tabelaHash.put("porcao_tabela", tabelaDTO.porcao());
-        tabelaHash.put("ingredientes", tabelaDTO.ingredientes());
-        tabelaHash.put("unidade_medida", tabelaDTO.tipoMedida());
-        tabelaHash.put("cod_produto", proximoId);
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonIngredientes = mapper.writeValueAsString(tabelaDTO.ingredientes());
 
-        redisTemplate.opsForHash().putAll(chaveHash, tabelaHash);
+            String chaveHash = "requisicao_user:" + idUsuario;
+            Map<String, Object> tabelaHash = new HashMap<>();
+            tabelaHash.put("nome_tabela", tabelaDTO.nomeTabela());
+            tabelaHash.put("porcao_tabela", String.valueOf(tabelaDTO.porcao()));
+            tabelaHash.put("ingredientes", jsonIngredientes);
+            tabelaHash.put("unidade_medida", tabelaDTO.tipoMedida());
+            tabelaHash.put("cod_produto", String.valueOf(proximoId));
 
-        fastApiService.criarTabelaNutricional(idUsuario);
+            redisTemplate.opsForHash().putAll(chaveHash, tabelaHash);
+
+            fastApiService.criarTabelaNutricional(idUsuario);
+        }catch (JsonProcessingException exception){
+            throw new JsonSerializationException("Erro ao processar o Json");
+        }
 
         Tabela tabela = tabelaRepository.findAllByIdProduto(proximoId).getLast();
-        return  new GetTabelaDTO(tabela.getId(), tabela.getNomeTabela(), tabela.getQuantidadeTotal(), tabela.getPorcao(),buscarPorcaoPorNutriente(tabela.getListaNutrientes(),tabela.getListaTotal(),tabela.getListaPorcao(), tabela.getListaValorDiario()));
+        return new GetTabelaDTO(tabela.getId(), tabela.getNomeTabela(), tabela.getQuantidadeTotal(), tabela.getPorcao(),buscarPorcaoPorNutriente(tabela.getListaNutrientes(),tabela.getListaTotal(),tabela.getListaPorcao(), tabela.getListaValorDiario()));
     }
     public List<GetNutrienteDTO> buscarPorcaoPorNutriente(List<String> listaNutrientes, List<Double> listaTotal, List<Double> listaPorcao, List<Double> listaValorDiario){
         List<GetNutrienteDTO> nutrienteDTOList = new ArrayList<>();
