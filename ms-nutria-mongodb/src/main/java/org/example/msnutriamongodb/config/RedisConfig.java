@@ -12,30 +12,33 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 public class RedisConfig {
-    @Value("${REDIS_URI}")
-    private String redisUri;
-    @Bean
-    public LettuceConnectionFactory redisConnectionFactory() {
-        RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
+  @Value("${REDIS_URI}")
+  private String redisUri;
 
-        RedisURI uri = RedisURI.create(redisUri);
-        configuration.setHostName(uri.getHost());
-        configuration.setPort(uri.getPort());
-        configuration.setPassword(RedisPassword.of(uri.getPassword()));
-        return new LettuceConnectionFactory(configuration);
-    }
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate(LettuceConnectionFactory connectionFactory) {
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
-        template.setConnectionFactory(connectionFactory);
+  @Bean
+  public LettuceConnectionFactory redisConnectionFactory() {
+    RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
 
-        template.setKeySerializer(new StringRedisSerializer());
-        template.setHashKeySerializer(new StringRedisSerializer());
+    String parsedUri = redisUri.replaceFirst("^valkeys://", "redis://");
+    RedisURI uri = RedisURI.create(parsedUri);
+    configuration.setHostName(uri.getHost());
+    configuration.setPort(uri.getPort());
+    configuration.setPassword(RedisPassword.of(uri.getPassword()));
+    return new LettuceConnectionFactory(configuration);
+  }
 
-        template.setValueSerializer(new StringRedisSerializer());
-        template.setHashValueSerializer(new StringRedisSerializer());
+  @Bean
+  public RedisTemplate<String, Object> redisTemplate(LettuceConnectionFactory connectionFactory) {
+    RedisTemplate<String, Object> template = new RedisTemplate<>();
+    template.setConnectionFactory(connectionFactory);
 
-        template.afterPropertiesSet();
-        return template;
-    }
+    template.setKeySerializer(new StringRedisSerializer());
+    template.setHashKeySerializer(new StringRedisSerializer());
+
+    template.setValueSerializer(new StringRedisSerializer());
+    template.setHashValueSerializer(new StringRedisSerializer());
+
+    template.afterPropertiesSet();
+    return template;
+  }
 }
