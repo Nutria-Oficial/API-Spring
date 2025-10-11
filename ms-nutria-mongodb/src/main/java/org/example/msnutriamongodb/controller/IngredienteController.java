@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class IngredienteController implements IngredienteApi {
-    private final IngredienteService ingredienteService;
+  private final IngredienteService ingredienteService;
 
-    public IngredienteController(IngredienteService ingredienteService) {
-        this.ingredienteService = ingredienteService;
-    }
+  public IngredienteController(IngredienteService ingredienteService) {
+    this.ingredienteService = ingredienteService;
+  }
 }
