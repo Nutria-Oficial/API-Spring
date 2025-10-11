@@ -5,21 +5,46 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import java.util.List;
 import org.example.msnutriamongodb.dto.GetProdutoDTO;
 import org.example.msnutriamongodb.dto.GetTabelaDTO;
+import org.example.msnutriamongodb.dto.exceptiondto.ErrorDTO;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
-
-@RequestMapping("/produtos")
 public interface ProdutoApi {
+  @Operation(
+      summary = "Busca o histórico de produtos criados",
+      description = "Retorna todos os produtos criados por um usuário")
+  @ApiResponses({
+    @ApiResponse(
+        responseCode = "200",
+        description = "Histórico retornado com sucesso",
+        content =
+            @Content(
+                mediaType = "application/json",
+                schema = @Schema(implementation = GetProdutoDTO.class))),
+    @ApiResponse(responseCode = "204", description = "Nenhum produto foi encontrado")
+  })
+  ResponseEntity<List<GetProdutoDTO>> buscarHistoricoPorUsuario(Integer idUsuario, boolean filtrar);
 
-    @GetMapping(value = "/usuario/{idUsuario}")
-    ResponseEntity<List<GetProdutoDTO>> buscarHistoricoPorUsuario(@PathVariable Integer idUsuario);
-
-    @GetMapping(value = "/{idProduto}")
-    ResponseEntity<List<GetTabelaDTO>> buscarTabelasPorProduto(@PathVariable Integer idProduto);
+  @Operation(
+      summary = "Busca as tabelas de um produto",
+      description = "Retorna todos as tabelas adicionadas para um produto")
+  @ApiResponses({
+    @ApiResponse(
+        responseCode = "200",
+        description = "Tabelas retornadas com sucesso",
+        content =
+            @Content(
+                mediaType = "application/json",
+                schema = @Schema(implementation = GetTabelaDTO.class))),
+    @ApiResponse(
+        responseCode = "404",
+        description = "Produto não foi encontrado",
+        content =
+            @Content(
+                mediaType = "application/json",
+                schema = @Schema(implementation = ErrorDTO.class)))
+  })
+  ResponseEntity<List<GetTabelaDTO>> buscarTabelasPorProduto(Integer idProduto);
 }
