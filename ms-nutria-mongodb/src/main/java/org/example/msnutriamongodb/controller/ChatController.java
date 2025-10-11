@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ChatController implements ChatApi {
-    private final ChatService chatService;
+  private final ChatService chatService;
 
-    public ChatController(ChatService chatService) {
-        this.chatService = chatService;
-    }
+  public ChatController(ChatService chatService) {
+    this.chatService = chatService;
+  }
 }
