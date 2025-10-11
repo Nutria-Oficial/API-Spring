@@ -1,6 +1,3 @@
 package org.example.msnutriamongodb.dto;
 
-public record GetProdutoDTO(
-        String nome
-) {
-}
+public record GetProdutoDTO(String nome) {}
