@@ -1,10 +1,13 @@
 package org.example.msnutriamongodb.contract;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import java.util.List;
+import org.example.msnutriamongodb.dto.GetComparacaoDTO;
 import org.example.msnutriamongodb.dto.GetTabelaDTO;
 import org.example.msnutriamongodb.dto.GetTabelaEAvaliacaoDTO;
 import org.example.msnutriamongodb.dto.PostTabelaDTO;
@@ -99,4 +102,26 @@ public interface TabelaApi {
                 schema = @Schema(implementation = ErrorDTO.class)))
   })
   ResponseEntity<GetTabelaEAvaliacaoDTO> buscarTabelaComAvaliacao(Integer idTabela);
+
+  @Operation(
+      summary = "Compara duas tabelas",
+      description = "Retorna a comparação de porção dos nutrientes de duas tabelas")
+  @ApiResponses({
+    @ApiResponse(
+        responseCode = "200",
+        description = "Comparação retornada com sucesso",
+        content =
+            @Content(
+                mediaType = "application/json",
+                array = @ArraySchema(schema = @Schema(implementation = GetComparacaoDTO.class)))),
+    @ApiResponse(
+        responseCode = "404",
+        description =
+            "Não foi possível encontrar alguma das tabelas para que seja possível fazer a comparação",
+        content =
+            @Content(
+                mediaType = "application/json",
+                schema = @Schema(implementation = ErrorDTO.class)))
+  })
+  ResponseEntity<List<GetComparacaoDTO>> compararTabelas(Integer idTabela1, Integer idTabela2);
 }
