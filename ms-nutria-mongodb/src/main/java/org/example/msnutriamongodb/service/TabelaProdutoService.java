@@ -97,6 +97,7 @@ public class TabelaProdutoService {
           new Produto(
               proximoId, tabelaDTO.nomeProduto(), new Date(), idUsuario, new Date(), idUsuario);
       produtoRepository.save(newProduto);
+      fastApiService.criarEmbedding();
     }
 
     try {

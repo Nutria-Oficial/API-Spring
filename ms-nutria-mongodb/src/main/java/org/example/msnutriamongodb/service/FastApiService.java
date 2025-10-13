@@ -28,4 +28,19 @@ public class FastApiService {
         .bodyToMono(String.class)
         .block();
   }
+
+  public void criarEmbedding() {
+    webClient
+        .post()
+        .uri("/embedding/")
+        .retrieve()
+        .onStatus(
+            HttpStatusCode::isError,
+            clientResponse ->
+                clientResponse
+                    .bodyToMono(ErrorDTO.class)
+                    .map(errorDTO -> new DatabaseInsertException(errorDTO.message())))
+        .bodyToMono(String.class)
+        .block();
+  }
 }
