@@ -1,51 +1,41 @@
 package org.example.msnutriamongodb.dto;
 
 import jakarta.validation.constraints.NotNull;
+
 public record RequestIngredienteDTO(
-        @NotNull
-        String nomeIngrediente,
-        @NotNull
-        double caloria,
-        @NotNull
-        double carboidrato,
-        @NotNull
-        double acucar,
-        @NotNull
-        double proteina,
-        @NotNull
-        double gorduraTotal,
-        @NotNull
-        double gorduraSaturada,
-        @NotNull
-        double sodio,
-        @NotNull
-        double fibra,
-        double agua,
-        double gorduraMonoinsaturada,
-        double gorduraPoliinsaturada,
-        double colesterol,
-        double alcool,
-        double vitaminaB6,
-        double vitaminaB12,
-        double vitaminaC,
-        double vitaminaD,
-        double vitaminaE,
-        double vitaminaK,
-        double teobromina,
-        double cafeina,
-        double colina,
-        double calcio,
-        double fosforo,
-        double magnesio,
-        double potassio,
-        double ferro,
-        double zinco,
-        double cobre,
-        double selenio,
-        double retinol,
-        double tiamina,
-        double riboflavina,
-        double niacina,
-        double folato
-) {
-}
+    @NotNull String nomeIngrediente,
+    @NotNull double caloria,
+    @NotNull double carboidrato,
+    @NotNull double acucar,
+    @NotNull double proteina,
+    @NotNull double gorduraTotal,
+    @NotNull double gorduraSaturada,
+    @NotNull double sodio,
+    @NotNull double fibra,
+    double agua,
+    double gorduraMonoinsaturada,
+    double gorduraPoliinsaturada,
+    double colesterol,
+    double alcool,
+    double vitaminaB6,
+    double vitaminaB12,
+    double vitaminaC,
+    double vitaminaD,
+    double vitaminaE,
+    double vitaminaK,
+    double teobromina,
+    double cafeina,
+    double colina,
+    double calcio,
+    double fosforo,
+    double magnesio,
+    double potassio,
+    double ferro,
+    double zinco,
+    double cobre,
+    double selenio,
+    double retinol,
+    double tiamina,
+    double riboflavina,
+    double niacina,
+    double folato) {}
