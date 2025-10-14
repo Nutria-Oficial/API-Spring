@@ -1,50 +1,40 @@
 package org.example.msnutriamongodb.model;
 
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "ingrediente")
 public class Ingrediente {
     @Id
-    @Field(name= "_id")
+    @Field(name = "_id")
     private Integer id;
 
     @Field(name = "cNmIngrediente")
-    @NotNull
     private String nomeIngrediente;
 
     @Field(name = "nCaloria(kcal)")
-    @NotNull
     private double caloria;
 
     @Field(name = "nCarboidrato(g)")
-    @NotNull
     private double carboidrato;
 
     @Field(name = "nAcucar(g)")
-    @NotNull
     private double acucar;
 
     @Field(name = "nProteina(g)")
-    @NotNull
     private double proteina;
 
     @Field(name = "nGorduraTotal(g)")
-    @NotNull
     private double gorduraTotal;
 
     @Field(name = "nGorduraSaturada(g)")
-    @NotNull
     private double gorduraSaturada;
 
     @Field(name = "nSodio(mg)")
-    @NotNull
     private double sodio;
 
     @Field(name = "nFibra(g)")
-    @NotNull
     private double fibra;
 
     @Field(name = "nAgua(g)")
