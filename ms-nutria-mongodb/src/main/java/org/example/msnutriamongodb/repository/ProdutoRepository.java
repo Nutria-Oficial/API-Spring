@@ -10,19 +10,15 @@ import org.springframework.stereotype.Repository;
 public interface ProdutoRepository extends MongoRepository<Produto, Integer> {
   List<Produto> findAllByIdUsuarioCriacao(Integer idUsuario);
 
-  @Aggregation(pipeline = {
-          "{$sort:{_id:-1}}",
-          "{$limit:1}",
-          "{$project:{_id:1}}"
-  })
+  @Aggregation(pipeline = {"{$sort:{_id:-1}}", "{$limit:1}", "{$project:{_id:1}}"})
   Produto findLastProduto();
 
   @Aggregation(
-          pipeline = {
-                  "{$match:{nCdUsuarioCriacao:?0}}",
-                  "{$lookup:{from:'tabela',localField:'_id',foreignField:'nCdProduto',as:'tabelas'}}",
-                  "{$match:{$expr:{$gt:[{$size:'$tabelas'},1]}}}",
-                  "{$project:{tabelas:0}}"
-          })
+      pipeline = {
+        "{$match:{nCdUsuarioCriacao:?0}}",
+        "{$lookup:{from:'tabela',localField:'_id',foreignField:'nCdProduto',as:'tabelas'}}",
+        "{$match:{$expr:{$gt:[{$size:'$tabelas'},1]}}}",
+        "{$project:{tabelas:0}}"
+      })
   List<Produto> findAllByMoreThenOneTable(Integer idUsuario);
 }

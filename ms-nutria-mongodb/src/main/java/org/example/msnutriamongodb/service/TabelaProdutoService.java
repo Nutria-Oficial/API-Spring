@@ -21,10 +21,10 @@ public class TabelaProdutoService {
   private final FastApiService fastApiService;
 
   public TabelaProdutoService(
-          TabelaRepository tabelaRepository,
-          ProdutoRepository produtoRepository,
-          RedisTemplate<String, Object> redisTemplate,
-          FastApiService fastApiService) {
+      TabelaRepository tabelaRepository,
+      ProdutoRepository produtoRepository,
+      RedisTemplate<String, Object> redisTemplate,
+      FastApiService fastApiService) {
     this.tabelaRepository = tabelaRepository;
     this.produtoRepository = produtoRepository;
     this.redisTemplate = redisTemplate;
@@ -34,12 +34,12 @@ public class TabelaProdutoService {
   public List<GetProdutoDTO> buscarHistoricoPorUsuario(Integer idUsuario, boolean filtrar) {
     if (filtrar) {
       return produtoRepository.findAllByMoreThenOneTable(idUsuario).stream()
-              .map(produto -> new GetProdutoDTO(produto.getNomeProduto()))
-              .toList();
+          .map(produto -> new GetProdutoDTO(produto.getNomeProduto()))
+          .toList();
     }
     return produtoRepository.findAllByIdUsuarioCriacao(idUsuario).stream()
-            .map(produto -> new GetProdutoDTO(produto.getNomeProduto()))
-            .toList();
+        .map(produto -> new GetProdutoDTO(produto.getNomeProduto()))
+        .toList();
   }
 
   public List<GetTabelaDTO> buscarTabelasPorProduto(Integer idProduto) {
@@ -49,19 +49,19 @@ public class TabelaProdutoService {
       throw new NotFoundException("Produto não foi encontrado");
     }
     return tabelaRepository.findAllByIdProduto(idProduto).stream()
-            .map(
-                    tabela ->
-                            new GetTabelaDTO(
-                                    tabela.getId(),
-                                    tabela.getNomeTabela(),
-                                    tabela.getQuantidadeTotal(),
-                                    tabela.getPorcao(),
-                                    buscarPorcaoPorNutriente(
-                                            tabela.getListaNutrientes(),
-                                            tabela.getListaTotal(),
-                                            tabela.getListaPorcao(),
-                                            tabela.getListaValorDiario())))
-            .toList();
+        .map(
+            tabela ->
+                new GetTabelaDTO(
+                    tabela.getId(),
+                    tabela.getNomeTabela(),
+                    tabela.getQuantidadeTotal(),
+                    tabela.getPorcao(),
+                    buscarPorcaoPorNutriente(
+                        tabela.getListaNutrientes(),
+                        tabela.getListaTotal(),
+                        tabela.getListaPorcao(),
+                        tabela.getListaValorDiario())))
+        .toList();
   }
 
   public GetTabelaEAvaliacaoDTO buscarTabelaEAvaliacao(Integer idTabela) {
@@ -72,16 +72,16 @@ public class TabelaProdutoService {
     }
     Tabela tabela = tabelaEncontrada.get();
     return new GetTabelaEAvaliacaoDTO(
-            tabela.getId(),
-            tabela.getNomeTabela(),
-            tabela.getQuantidadeTotal(),
-            tabela.getPorcao(),
-            buscarPorcaoPorNutriente(
-                    tabela.getListaNutrientes(),
-                    tabela.getListaTotal(),
-                    tabela.getListaPorcao(),
-                    tabela.getListaValorDiario()),
-            tabela.getAvaliacao());
+        tabela.getId(),
+        tabela.getNomeTabela(),
+        tabela.getQuantidadeTotal(),
+        tabela.getPorcao(),
+        buscarPorcaoPorNutriente(
+            tabela.getListaNutrientes(),
+            tabela.getListaTotal(),
+            tabela.getListaPorcao(),
+            tabela.getListaValorDiario()),
+        tabela.getAvaliacao());
   }
 
   public GetTabelaDTO criarTabela(Integer idProduto, PostTabelaDTO tabelaDTO, Integer idUsuario) {
@@ -95,8 +95,8 @@ public class TabelaProdutoService {
       Produto lastProduto = produtoRepository.findLastProduto();
       proximoId = (lastProduto != null) ? lastProduto.getId() + 1 : 1;
       Produto newProduto =
-              new Produto(
-                      proximoId, tabelaDTO.nomeProduto(), new Date(), idUsuario, new Date(), idUsuario);
+          new Produto(
+              proximoId, tabelaDTO.nomeProduto(), new Date(), idUsuario, new Date(), idUsuario);
       produtoRepository.save(newProduto);
       fastApiService.criarEmbedding();
     }
@@ -106,7 +106,7 @@ public class TabelaProdutoService {
       String jsonIngredientes = mapper.writeValueAsString(tabelaDTO.ingredientes());
 
       String chaveHash = "requisicao_user:" + idUsuario;
-      Map<String, Object>tabelaHash = new HashMap<>();
+      Map<String, Object> tabelaHash = new HashMap<>();
       tabelaHash.put("nome_tabela", tabelaDTO.nomeTabela());
       tabelaHash.put("porcao_tabela", String.valueOf(tabelaDTO.porcao()));
       tabelaHash.put("ingredientes", jsonIngredientes);
@@ -126,30 +126,30 @@ public class TabelaProdutoService {
     }
     Tabela tabela = tabelas.getLast();
     return new GetTabelaDTO(
-            tabela.getId(),
-            tabela.getNomeTabela(),
-            tabela.getQuantidadeTotal(),
-            tabela.getPorcao(),
-            buscarPorcaoPorNutriente(
-                    tabela.getListaNutrientes(),
-                    tabela.getListaTotal(),
-                    tabela.getListaPorcao(),
-                    tabela.getListaValorDiario()));
+        tabela.getId(),
+        tabela.getNomeTabela(),
+        tabela.getQuantidadeTotal(),
+        tabela.getPorcao(),
+        buscarPorcaoPorNutriente(
+            tabela.getListaNutrientes(),
+            tabela.getListaTotal(),
+            tabela.getListaPorcao(),
+            tabela.getListaValorDiario()));
   }
 
   public List<GetNutrienteDTO> buscarPorcaoPorNutriente(
-          List<String> listaNutrientes,
-          List<Double> listaTotal,
-          List<Double> listaPorcao,
-          List<Double> listaValorDiario) {
+      List<String> listaNutrientes,
+      List<Double> listaTotal,
+      List<Double> listaPorcao,
+      List<Double> listaValorDiario) {
     List<GetNutrienteDTO> nutrienteDTOList = new ArrayList<>();
     for (int i = 0; i < listaNutrientes.size(); i++) {
       nutrienteDTOList.add(
-              new GetNutrienteDTO(
-                      listaNutrientes.get(i),
-                      listaTotal.get(i),
-                      listaPorcao.get(i),
-                      listaValorDiario.get(i)));
+          new GetNutrienteDTO(
+              listaNutrientes.get(i),
+              listaTotal.get(i),
+              listaPorcao.get(i),
+              listaValorDiario.get(i)));
     }
     return nutrienteDTOList;
   }
