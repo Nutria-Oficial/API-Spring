@@ -49,18 +49,7 @@ public class TabelaProdutoService {
       throw new NotFoundException("Produto não foi encontrado");
     }
     return tabelaRepository.findAllByIdProduto(idProduto).stream()
-        .map(
-            tabela ->
-                new GetTabelaDTO(
-                    tabela.getId(),
-                    tabela.getNomeTabela(),
-                    tabela.getQuantidadeTotal(),
-                    tabela.getPorcao(),
-                    buscarPorcaoPorNutriente(
-                        tabela.getListaNutrientes(),
-                        tabela.getListaTotal(),
-                        tabela.getListaPorcao(),
-                        tabela.getListaValorDiario())))
+        .map(this::toGetTabelaDTO)
         .toList();
   }
 
@@ -125,16 +114,7 @@ public class TabelaProdutoService {
       throw new NotFoundException("Nenhuma tabela foi criada para este produto.");
     }
     Tabela tabela = tabelas.getLast();
-    return new GetTabelaDTO(
-        tabela.getId(),
-        tabela.getNomeTabela(),
-        tabela.getQuantidadeTotal(),
-        tabela.getPorcao(),
-        buscarPorcaoPorNutriente(
-            tabela.getListaNutrientes(),
-            tabela.getListaTotal(),
-            tabela.getListaPorcao(),
-            tabela.getListaValorDiario()));
+    return toGetTabelaDTO(tabela);
   }
 
   public List<GetNutrienteDTO> buscarPorcaoPorNutriente(
@@ -152,5 +132,18 @@ public class TabelaProdutoService {
               listaValorDiario.get(i)));
     }
     return nutrienteDTOList;
+  }
+
+  public GetTabelaDTO toGetTabelaDTO(Tabela tabela) {
+    return new GetTabelaDTO(
+        tabela.getId(),
+        tabela.getNomeTabela(),
+        tabela.getQuantidadeTotal(),
+        tabela.getPorcao(),
+        buscarPorcaoPorNutriente(
+            tabela.getListaNutrientes(),
+            tabela.getListaTotal(),
+            tabela.getListaPorcao(),
+            tabela.getListaValorDiario()));
   }
 }
