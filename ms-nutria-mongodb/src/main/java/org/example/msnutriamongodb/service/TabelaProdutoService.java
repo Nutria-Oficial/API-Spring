@@ -133,16 +133,17 @@ public class TabelaProdutoService {
     }
     return nutrienteDTOList;
   }
-  public GetTabelaDTO toGetTabelaDTO(Tabela tabela){
+
+  public GetTabelaDTO toGetTabelaDTO(Tabela tabela) {
     return new GetTabelaDTO(
-            tabela.getId(),
-            tabela.getNomeTabela(),
-            tabela.getQuantidadeTotal(),
-            tabela.getPorcao(),
-            buscarPorcaoPorNutriente(
-                    tabela.getListaNutrientes(),
-                    tabela.getListaTotal(),
-                    tabela.getListaPorcao(),
-                    tabela.getListaValorDiario()));
+        tabela.getId(),
+        tabela.getNomeTabela(),
+        tabela.getQuantidadeTotal(),
+        tabela.getPorcao(),
+        buscarPorcaoPorNutriente(
+            tabela.getListaNutrientes(),
+            tabela.getListaTotal(),
+            tabela.getListaPorcao(),
+            tabela.getListaValorDiario()));
   }
 }
