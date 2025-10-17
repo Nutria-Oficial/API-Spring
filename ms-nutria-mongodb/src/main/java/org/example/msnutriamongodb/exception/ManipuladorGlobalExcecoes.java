@@ -53,4 +53,10 @@ public class ManipuladorGlobalExcecoes {
             HttpStatus.INTERNAL_SERVER_ERROR.value(), jsonSerializationException.getMessage());
     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDTO);
   }
+
+  @ExceptionHandler(DuplicateException.class)
+  public ResponseEntity<ErrorDTO> duplicateException(DuplicateException duplicateException) {
+    ErrorDTO errorDTO = new ErrorDTO(HttpStatus.CONFLICT.value(), duplicateException.getMessage());
+    return ResponseEntity.status(HttpStatus.CONFLICT).body(errorDTO);
+  }
 }

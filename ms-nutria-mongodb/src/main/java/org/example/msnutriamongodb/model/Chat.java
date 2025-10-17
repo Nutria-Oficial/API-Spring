@@ -16,13 +16,13 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Chat {
   @Id
   @Field(name = "_id")
-  private Long id;
+  private Integer id;
 
   @Field(name = "nCdUsuario")
-  private Long idUsuario;
+  private Integer idUsuario;
 
   @Field(name = "iChat")
-  private Long indiceChat;
+  private Integer indiceChat;
 
   @Field(name = "lUser")
   private List<String> listaUsuario = new ArrayList<>();
