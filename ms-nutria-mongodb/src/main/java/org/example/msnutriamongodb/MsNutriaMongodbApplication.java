@@ -5,7 +5,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.mongo.MongoReactiveAutoConfiguration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-@SpringBootApplication(exclude = {MongoReactiveAutoConfiguration.class})
+@SpringBootApplication(
+    exclude = {
+      MongoReactiveAutoConfiguration.class,
+      org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+          .class,
+      org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration
+          .class,
+      org.springframework.boot.autoconfigure.security.reactive
+          .ReactiveUserDetailsServiceAutoConfiguration.class
+    })
 @EnableMongoRepositories(basePackages = "org.example.msnutriamongodb.repository")
 public class MsNutriaMongodbApplication {
 

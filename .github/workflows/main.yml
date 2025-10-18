@@ -2,7 +2,7 @@ name: CI - Nutria API MongoDB
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ main, develop ]
 
 jobs:
   build:

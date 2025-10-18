@@ -1,6 +1,12 @@
 package org.example.msnutriamongodb.contract;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.ResponseEntity;
 
-@RequestMapping("/chat")
-public interface ChatApi {}
+public interface ChatApi {
+
+  ResponseEntity<String> pegarRespostaIA(Integer id);
+
+  ResponseEntity<String[][]> listarChat(Integer id);
+
+  ResponseEntity<Void> limparChat(Integer id);
+}
