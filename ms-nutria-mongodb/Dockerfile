@@ -3,7 +3,8 @@ WORKDIR /app
 COPY ms-nutria-mongodb/pom.xml .
 RUN mvn dependency:go-offline
 COPY ms-nutria-mongodb/src ./src
-RUN mvn clean package -DskipTests
+# Use o spring-boot:repackage para garantir o JAR executável
+RUN mvn clean package spring-boot:repackage -DskipTests
 
 FROM eclipse-temurin:21-jre
 WORKDIR /app
