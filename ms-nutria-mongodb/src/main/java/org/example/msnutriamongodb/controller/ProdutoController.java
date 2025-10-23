@@ -34,7 +34,8 @@ public class ProdutoController implements ProdutoApi {
   @GetMapping(value = "/{idProduto}")
   public ResponseEntity<List<GetTabelaEAvaliacaoDTO>> buscarTabelasPorProduto(
       @PathVariable Integer idProduto) {
-    List<GetTabelaEAvaliacaoDTO> produtoList = tabelaProdutoService.buscarTabelasPorProduto(idProduto);
+    List<GetTabelaEAvaliacaoDTO> produtoList =
+        tabelaProdutoService.buscarTabelasPorProduto(idProduto);
     return new ResponseEntity<>(produtoList, HttpStatus.OK);
   }
 }

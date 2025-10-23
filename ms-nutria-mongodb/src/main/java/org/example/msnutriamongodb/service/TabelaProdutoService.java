@@ -136,17 +136,18 @@ public class TabelaProdutoService {
             tabela.getListaPorcao(),
             tabela.getListaValorDiario()));
   }
+
   public GetTabelaEAvaliacaoDTO toGetTabelaEAvaliacaoDTO(Tabela tabela) {
     return new GetTabelaEAvaliacaoDTO(
-            tabela.getId(),
-            tabela.getNomeTabela(),
-            tabela.getQuantidadeTotal(),
-            tabela.getPorcao(),
-            buscarPorcaoPorNutriente(
-                    tabela.getListaNutrientes(),
-                    tabela.getListaTotal(),
-                    tabela.getListaPorcao(),
-                    tabela.getListaValorDiario()),
-            tabela.getAvaliacao());
+        tabela.getId(),
+        tabela.getNomeTabela(),
+        tabela.getQuantidadeTotal(),
+        tabela.getPorcao(),
+        buscarPorcaoPorNutriente(
+            tabela.getListaNutrientes(),
+            tabela.getListaTotal(),
+            tabela.getListaPorcao(),
+            tabela.getListaValorDiario()),
+        tabela.getAvaliacao());
   }
 }
