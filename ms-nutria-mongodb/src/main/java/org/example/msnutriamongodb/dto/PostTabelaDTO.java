@@ -10,7 +10,7 @@ import org.example.msnutriamongodb.model.ItemIngrediente;
 public record PostTabelaDTO(
     @NotBlank String nomeProduto,
     @NotBlank String nomeTabela,
-    @Pattern(regexp = "Kg|g|ml|l", message = "O tipo de medida deve ser em kg, g, ml, ou l")
+    @Pattern(regexp = "kg|g|ml|l", message = "O tipo de medida deve ser em kg, g, ml, ou l")
         String tipoMedida,
     double porcao,
     @NotNull(message = "Precisa adicionar ingredientes")
