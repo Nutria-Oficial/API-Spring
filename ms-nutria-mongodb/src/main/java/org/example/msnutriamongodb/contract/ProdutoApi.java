@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import java.util.List;
 import org.example.msnutriamongodb.dto.GetProdutoDTO;
-import org.example.msnutriamongodb.dto.GetTabelaDTO;
+import org.example.msnutriamongodb.dto.GetTabelaEAvaliacaoDTO;
 import org.example.msnutriamongodb.dto.exceptiondto.ErrorDTO;
 import org.springframework.http.ResponseEntity;
 
@@ -37,7 +37,7 @@ public interface ProdutoApi {
         content =
             @Content(
                 mediaType = "application/json",
-                schema = @Schema(implementation = GetTabelaDTO.class))),
+                schema = @Schema(implementation = GetTabelaEAvaliacaoDTO.class))),
     @ApiResponse(
         responseCode = "404",
         description = "Produto não foi encontrado",
@@ -46,5 +46,5 @@ public interface ProdutoApi {
                 mediaType = "application/json",
                 schema = @Schema(implementation = ErrorDTO.class)))
   })
-  ResponseEntity<List<GetTabelaDTO>> buscarTabelasPorProduto(Integer idProduto);
+  ResponseEntity<List<GetTabelaEAvaliacaoDTO>> buscarTabelasPorProduto(Integer idProduto);
 }

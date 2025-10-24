@@ -3,7 +3,7 @@ package org.example.msnutriamongodb.controller;
 import java.util.List;
 import org.example.msnutriamongodb.contract.ProdutoApi;
 import org.example.msnutriamongodb.dto.GetProdutoDTO;
-import org.example.msnutriamongodb.dto.GetTabelaDTO;
+import org.example.msnutriamongodb.dto.GetTabelaEAvaliacaoDTO;
 import org.example.msnutriamongodb.service.TabelaProdutoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,9 +32,10 @@ public class ProdutoController implements ProdutoApi {
 
   @Override
   @GetMapping(value = "/{idProduto}")
-  public ResponseEntity<List<GetTabelaDTO>> buscarTabelasPorProduto(
+  public ResponseEntity<List<GetTabelaEAvaliacaoDTO>> buscarTabelasPorProduto(
       @PathVariable Integer idProduto) {
-    List<GetTabelaDTO> produtoList = tabelaProdutoService.buscarTabelasPorProduto(idProduto);
+    List<GetTabelaEAvaliacaoDTO> produtoList =
+        tabelaProdutoService.buscarTabelasPorProduto(idProduto);
     return new ResponseEntity<>(produtoList, HttpStatus.OK);
   }
 }

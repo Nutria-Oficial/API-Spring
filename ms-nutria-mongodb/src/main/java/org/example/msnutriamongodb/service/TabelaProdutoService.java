@@ -34,22 +34,22 @@ public class TabelaProdutoService {
   public List<GetProdutoDTO> buscarHistoricoPorUsuario(Integer idUsuario, boolean filtrar) {
     if (filtrar) {
       return produtoRepository.findAllByMoreThenOneTable(idUsuario).stream()
-          .map(produto -> new GetProdutoDTO(produto.getNomeProduto()))
+          .map(produto -> new GetProdutoDTO(produto.getId(), produto.getNomeProduto()))
           .toList();
     }
     return produtoRepository.findAllByIdUsuarioCriacao(idUsuario).stream()
-        .map(produto -> new GetProdutoDTO(produto.getNomeProduto()))
+        .map(produto -> new GetProdutoDTO(produto.getId(), produto.getNomeProduto()))
         .toList();
   }
 
-  public List<GetTabelaDTO> buscarTabelasPorProduto(Integer idProduto) {
+  public List<GetTabelaEAvaliacaoDTO> buscarTabelasPorProduto(Integer idProduto) {
     Optional<Produto> produto = produtoRepository.findById(idProduto);
 
     if (produto.isEmpty()) {
       throw new NotFoundException("Produto não foi encontrado");
     }
     return tabelaRepository.findAllByIdProduto(idProduto).stream()
-        .map(this::toGetTabelaDTO)
+        .map(this::toGetTabelaEAvaliacaoDTO)
         .toList();
   }
 
@@ -60,17 +60,7 @@ public class TabelaProdutoService {
       throw new NotFoundException("Tabela não foi encontrada");
     }
     Tabela tabela = tabelaEncontrada.get();
-    return new GetTabelaEAvaliacaoDTO(
-        tabela.getId(),
-        tabela.getNomeTabela(),
-        tabela.getQuantidadeTotal(),
-        tabela.getPorcao(),
-        buscarPorcaoPorNutriente(
-            tabela.getListaNutrientes(),
-            tabela.getListaTotal(),
-            tabela.getListaPorcao(),
-            tabela.getListaValorDiario()),
-        tabela.getAvaliacao());
+    return toGetTabelaEAvaliacaoDTO(tabela);
   }
 
   public GetTabelaDTO criarTabela(Integer idProduto, PostTabelaDTO tabelaDTO, Integer idUsuario) {
@@ -145,5 +135,19 @@ public class TabelaProdutoService {
             tabela.getListaTotal(),
             tabela.getListaPorcao(),
             tabela.getListaValorDiario()));
+  }
+
+  public GetTabelaEAvaliacaoDTO toGetTabelaEAvaliacaoDTO(Tabela tabela) {
+    return new GetTabelaEAvaliacaoDTO(
+        tabela.getId(),
+        tabela.getNomeTabela(),
+        tabela.getQuantidadeTotal(),
+        tabela.getPorcao(),
+        buscarPorcaoPorNutriente(
+            tabela.getListaNutrientes(),
+            tabela.getListaTotal(),
+            tabela.getListaPorcao(),
+            tabela.getListaValorDiario()),
+        tabela.getAvaliacao());
   }
 }
