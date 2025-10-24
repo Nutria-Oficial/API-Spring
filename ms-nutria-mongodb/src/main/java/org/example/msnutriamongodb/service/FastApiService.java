@@ -19,7 +19,7 @@ public class FastApiService {
 
     this.webClient =
         builder
-            .baseUrl("http://127.0.0.1:8000")
+            .baseUrl("${FASTAPI_URL}")
             .clientConnector(new ReactorClientHttpConnector(httpClient))
             .build();
   }
