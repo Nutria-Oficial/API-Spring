@@ -59,7 +59,7 @@ public class ChatService {
   public boolean limparChat(Integer id) {
     Chat chatBuscado = buscarChat(id);
     if (chatBuscado != null) {
-      Query query = new Query(Criteria.where("_id").is(id));
+      Query query = new Query(Criteria.where("nCdUsuario").is(id));
       Update update =
           new Update().set("lUser", Collections.emptyList()).set("lBot", Collections.emptyList());
       mongoTemplate.updateFirst(query, update, Chat.class);
