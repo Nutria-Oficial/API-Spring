@@ -43,7 +43,7 @@ public class ChatService {
 
     int tamanho = usuario.size() + bot.size();
 
-    for (int i = 0; i < tamanho; i=i+2) {
+    for (int i = 0; i <= tamanho; i=i+2) {
       if (i < usuario.size()) {
         resultado.add(usuario.get(i));
       }
