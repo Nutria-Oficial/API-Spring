@@ -1,6 +1,9 @@
 package org.example.msnutriamongodb.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
 import org.example.msnutriamongodb.model.Chat;
 import org.example.msnutriamongodb.repository.ChatRepository;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -30,28 +33,26 @@ public class ChatService {
     return chatOpt.getListaBot().getLast();
   }
 
-  public String[][] listarChat(Integer id) {
-    Chat chatOpt = buscarChat(id);
+  public List<String> listarChat(Integer id) {
+    Chat chat = buscarChat(id);
 
-    int quantidadePerguntas = chatOpt.getListaUsuario().size();
-    int quantidadeRespostas = chatOpt.getListaBot().size();
-    int linhas;
+    List<String> usuario = chat.getListaUsuario();
+    List<String> bot = chat.getListaBot();
 
-    if (quantidadePerguntas >= quantidadePerguntas) {
-      linhas = quantidadePerguntas;
-    } else {
-      linhas = quantidadeRespostas;
-    }
-    String[][] perguntaResposta = new String[linhas][2];
+    List<String> resultado = new ArrayList<>();
 
-    for (int i = 0; i < chatOpt.getListaUsuario().size(); i++) {
-      perguntaResposta[i][0] = chatOpt.getListaUsuario().get(i);
-    }
-    for (int i = 0; i < chatOpt.getListaBot().size(); i++) {
-      perguntaResposta[i][1] = chatOpt.getListaBot().get(i);
+    int tamanho = usuario.size() + bot.size();
+
+    for (int i = 0; i < tamanho; i=i+2) {
+      if (i < usuario.size()) {
+        resultado.add(usuario.get(i));
+      }
+      if (i < bot.size()) {
+        resultado.add(bot.get(i));
+      }
     }
 
-    return perguntaResposta;
+    return resultado;
   }
 
   public boolean limparChat(Integer id) {

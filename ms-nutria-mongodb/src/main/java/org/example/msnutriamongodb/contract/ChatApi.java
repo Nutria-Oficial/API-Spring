@@ -8,6 +8,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.example.msnutriamongodb.dto.exceptiondto.ErrorDTO;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 public interface ChatApi {
   @Operation(
       summary = "Busca a resposta da IA para um chat",
@@ -34,7 +36,7 @@ public interface ChatApi {
   @Operation(
       summary = "Lista todas as mensagens do chat",
       description =
-          "Retorna todas as mensagens do chat com o ID passado em formato de matriz, onde cada linha representa um par de mensagens (usuário e IA).")
+          "Retorna todas as mensagens do chat com o ID passado em formato de lista, começando pelo usuário e intercalando com IA.")
   @ApiResponses({
     @ApiResponse(
         responseCode = "200",
@@ -42,7 +44,7 @@ public interface ChatApi {
         content =
             @Content(
                 mediaType = "application/json",
-                schema = @Schema(implementation = String[][].class))),
+                schema = @Schema(implementation = List.class))),
     @ApiResponse(
         responseCode = "404",
         description = "Chat não encontrado",
@@ -51,7 +53,7 @@ public interface ChatApi {
                 mediaType = "application/json",
                 schema = @Schema(implementation = ErrorDTO.class)))
   })
-  ResponseEntity<String[][]> listarChat(Integer id);
+  ResponseEntity<List<String>> listarChat(Integer id);
 
   @Operation(
       summary = "Limpa o histórico de um chat",
