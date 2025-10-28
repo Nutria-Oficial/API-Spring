@@ -22,9 +22,9 @@ public class ChatService {
     this.mongoTemplate = mongoTemplate;
   }
 
-  public Chat buscarChat(Integer id) {
+  public Chat buscarChat(Integer idUsuario) {
     return chatRepository
-        .findById(id)
+        .findByIdUsuario(idUsuario)
         .orElseThrow(() -> new RuntimeException("Chat não encontrado"));
   }
 
