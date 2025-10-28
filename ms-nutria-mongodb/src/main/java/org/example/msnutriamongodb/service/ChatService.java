@@ -41,14 +41,15 @@ public class ChatService {
 
     List<String> resultado = new ArrayList<>();
 
-    int tamanho = usuario.size() + bot.size();
-
-    for (int i = 0; i <= tamanho; i=i+2) {
+    int i = 0, j = 0;
+    while (i < usuario.size() || j < bot.size()) {
       if (i < usuario.size()) {
         resultado.add(usuario.get(i));
+        i++;
       }
-      if (i < bot.size()) {
-        resultado.add(bot.get(i));
+      if (j < bot.size()) {
+        resultado.add(bot.get(j));
+        j++;
       }
     }
 
