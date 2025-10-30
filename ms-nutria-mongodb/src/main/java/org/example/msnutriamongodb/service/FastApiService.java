@@ -35,7 +35,7 @@ public class FastApiService {
             clientResponse ->
                 clientResponse
                     .bodyToMono(ErrorDTO.class)
-                    .map(errorDTO -> new DatabaseInsertException(errorDTO.message())))
+                    .map(errorDTO -> new DatabaseInsertException(errorDTO.getMessage())))
         .bodyToMono(String.class)
         .block();
   }
@@ -50,7 +50,7 @@ public class FastApiService {
             clientResponse ->
                 clientResponse
                     .bodyToMono(ErrorDTO.class)
-                    .map(errorDTO -> new DatabaseInsertException(errorDTO.message())))
+                    .map(errorDTO -> new DatabaseInsertException(errorDTO.getMessage())))
         .bodyToMono(String.class)
         .block();
   }

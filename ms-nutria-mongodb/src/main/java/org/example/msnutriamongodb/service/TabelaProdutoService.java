@@ -75,21 +75,21 @@ public class TabelaProdutoService {
       proximoId = (lastProduto != null) ? lastProduto.getId() + 1 : 1;
       Produto newProduto =
           new Produto(
-              proximoId, tabelaDTO.nomeProduto(), new Date(), idUsuario, new Date(), idUsuario);
+              proximoId, tabelaDTO.getNomeProduto(), new Date(), idUsuario, new Date(), idUsuario);
       produtoRepository.save(newProduto);
       fastApiService.criarEmbedding();
     }
 
     try {
       ObjectMapper mapper = new ObjectMapper();
-      String jsonIngredientes = mapper.writeValueAsString(tabelaDTO.ingredientes());
+      String jsonIngredientes = mapper.writeValueAsString(tabelaDTO.getIngredientes());
 
       String chaveHash = "requisicao_user:" + idUsuario;
       Map<String, Object> tabelaHash = new HashMap<>();
-      tabelaHash.put("nome_tabela", tabelaDTO.nomeTabela());
-      tabelaHash.put("porcao_tabela", String.valueOf(tabelaDTO.porcao()));
+      tabelaHash.put("nome_tabela", tabelaDTO.getNomeTabela());
+      tabelaHash.put("porcao_tabela", String.valueOf(tabelaDTO.getPorcao()));
       tabelaHash.put("ingredientes", jsonIngredientes);
-      tabelaHash.put("unidade_medida", tabelaDTO.tipoMedida());
+      tabelaHash.put("unidade_medida", tabelaDTO.getTipoMedida());
       tabelaHash.put("cod_produto", String.valueOf(proximoId));
 
       redisTemplate.opsForHash().putAll(chaveHash, tabelaHash);
