@@ -3,6 +3,7 @@ package org.example.msnutriamongodb.service;
 import java.time.Duration;
 import org.example.msnutriamongodb.dto.exceptiondto.ErrorDTO;
 import org.example.msnutriamongodb.exception.DatabaseInsertException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Service;
@@ -13,13 +14,13 @@ import reactor.netty.http.client.HttpClient;
 public class FastApiService {
   private final WebClient webClient;
 
-  public FastApiService(WebClient.Builder builder) {
+  public FastApiService(WebClient.Builder builder, @Value("${fastapi.url}") String fastApiUrl) {
     HttpClient httpClient =
-        HttpClient.create().responseTimeout(Duration.ofSeconds(30)); // espera até 30s pela resposta
+        HttpClient.create().responseTimeout(Duration.ofSeconds(30));
 
     this.webClient =
         builder
-            .baseUrl("${FASTAPI_URL}")
+            .baseUrl(fastApiUrl)
             .clientConnector(new ReactorClientHttpConnector(httpClient))
             .build();
   }

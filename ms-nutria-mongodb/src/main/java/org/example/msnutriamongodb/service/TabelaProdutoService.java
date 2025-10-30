@@ -114,12 +114,16 @@ public class TabelaProdutoService {
       List<Double> listaValorDiario) {
     List<GetNutrienteDTO> nutrienteDTOList = new ArrayList<>();
     for (int i = 0; i < listaNutrientes.size(); i++) {
+      Double vd = null;
+      if (!Double.isNaN(listaValorDiario.get(i))){
+        vd = listaValorDiario.get(i);
+      }
       nutrienteDTOList.add(
           new GetNutrienteDTO(
               listaNutrientes.get(i),
               listaTotal.get(i),
               listaPorcao.get(i),
-              listaValorDiario.get(i)));
+              vd));
     }
     return nutrienteDTOList;
   }
