@@ -19,17 +19,6 @@ public class ChatController implements ChatApi {
   }
 
   @Override
-  @GetMapping("/respostaIA/{id}")
-  public ResponseEntity<String> pegarRespostaIA(@PathVariable Integer id) {
-    Chat chat = chatService.buscarChat(id);
-    if (chat == null) {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-    String resposta = chatService.pegarRespostaIA(id);
-    return new ResponseEntity<>(resposta, HttpStatus.OK);
-  }
-
-  @Override
   @GetMapping("/{id}")
   public ResponseEntity<List<String>> listarChat(@PathVariable Integer id) {
     Chat chat = chatService.buscarChat(id);

@@ -11,27 +11,6 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface ChatApi {
-  @Operation(
-      summary = "Busca a resposta da IA para um chat",
-      description =
-          "Busca no banco de dados o chat correspondente ao ID e retorna a resposta gerada pela IA.")
-  @ApiResponses({
-    @ApiResponse(
-        responseCode = "200",
-        description = "Resposta da IA retornada com sucesso",
-        content =
-            @Content(
-                mediaType = "application/json",
-                schema = @Schema(implementation = String.class))),
-    @ApiResponse(
-        responseCode = "404",
-        description = "Chat não encontrado",
-        content =
-            @Content(
-                mediaType = "application/json",
-                schema = @Schema(implementation = ErrorDTO.class)))
-  })
-  ResponseEntity<String> pegarRespostaIA(Integer id);
 
   @Operation(
       summary = "Lista todas as mensagens do chat",

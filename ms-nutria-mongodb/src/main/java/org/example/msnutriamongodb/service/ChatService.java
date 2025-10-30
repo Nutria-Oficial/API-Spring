@@ -28,11 +28,6 @@ public class ChatService {
         .orElseThrow(() -> new RuntimeException("Chat não encontrado"));
   }
 
-  public String pegarRespostaIA(Integer id) {
-    Chat chatOpt = buscarChat(id);
-    return chatOpt.getListaBot().getLast();
-  }
-
   public List<String> listarChat(Integer id) {
     Chat chat = buscarChat(id);
 
