@@ -74,17 +74,16 @@ public class IngredienteService {
   public List<GetNomeIdIngredienteDTO> buscarPorNomeExato(String nome) {
     List<Ingrediente> resultados = ingredienteRepository.findByNomeIngrediente(nome);
     return resultados.stream()
-            .map(i -> objectMapper.convertValue(i, GetNomeIdIngredienteDTO.class))
+            .map(ingrediente -> objectMapper.convertValue(ingrediente, GetNomeIdIngredienteDTO.class))
             .collect(Collectors.toList());
   }
 
   public List<GetNomeIdIngredienteDTO> buscarPorInicioDoNome(String nome) {
-    // Pattern.quote evita que caracteres especiais causem erro na regex
-    Pattern regex = Pattern.compile("^" + Pattern.quote(nome) + ".*");
+    String regex = "^" + Pattern.quote(nome);
     List<Ingrediente> resultados = ingredienteRepository.findByNomeIngredienteRegex(regex);
 
     return resultados.stream()
-            .map(i -> objectMapper.convertValue(i, GetNomeIdIngredienteDTO.class))
+            .map(ingrediente -> objectMapper.convertValue(ingrediente, GetNomeIdIngredienteDTO.class))
             .collect(Collectors.toList());
   }
 }
