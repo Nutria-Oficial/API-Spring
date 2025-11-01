@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import java.util.regex.Pattern;
 
 @Service
 public class IngredienteService {
@@ -78,7 +79,10 @@ public class IngredienteService {
   }
 
   public List<GetNomeIdIngredienteDTO> buscarPorInicioDoNome(String nome) {
-    List<Ingrediente> resultados = ingredienteRepository.findByNomeIngredienteRegex("^" + nome + ".*");
+    // Pattern.quote evita que caracteres especiais causem erro na regex
+    Pattern regex = Pattern.compile("^" + Pattern.quote(nome) + ".*");
+    List<Ingrediente> resultados = ingredienteRepository.findByNomeIngredienteRegex(regex);
+
     return resultados.stream()
             .map(i -> objectMapper.convertValue(i, GetNomeIdIngredienteDTO.class))
             .collect(Collectors.toList());
