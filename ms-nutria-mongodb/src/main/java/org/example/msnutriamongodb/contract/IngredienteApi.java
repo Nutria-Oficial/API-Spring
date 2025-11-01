@@ -11,13 +11,16 @@ import org.example.msnutriamongodb.dto.GetIngredienteDTO;
 import org.example.msnutriamongodb.dto.PostIngredienteDTO;
 import org.example.msnutriamongodb.dto.GetNomeIdIngredienteDTO;
 import org.example.msnutriamongodb.dto.exceptiondto.ErrorDTO;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 public interface IngredienteApi {
 
   @Operation(
-      summary = "Lista todos os ingredientes cadastrados",
-      description = "Retorna todos os ingredientes cadastrados no banco de dados.")
+      summary = "Lista os ingredientes cadastrados, paginando os resultados",
+      description = "Retorna os ingredientes cadastrados no banco de dados, paginando os resultados. Default da página = 1")
   @ApiResponses({
     @ApiResponse(
         responseCode = "200",
@@ -28,9 +31,9 @@ public interface IngredienteApi {
                 schema = @Schema(implementation = GetNomeIdIngredienteDTO.class))),
     @ApiResponse(responseCode = "204", description = "Nenhum ingrediente encontrado")
   })
-  ResponseEntity<List<GetNomeIdIngredienteDTO>> getAllIngredientes();
+  ResponseEntity<Page<GetNomeIdIngredienteDTO>> getAllIngredientes(@RequestParam(defaultValue = "1") int pagina);
 
-  @Operation(
+    @Operation(
       summary = "Busca um ingrediente pelo ID",
       description = "Retorna os dados do ingrediente correspondente ao ID passado.")
   @ApiResponses({

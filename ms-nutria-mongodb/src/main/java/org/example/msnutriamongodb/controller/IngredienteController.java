@@ -1,13 +1,12 @@
 package org.example.msnutriamongodb.controller;
 
 import jakarta.validation.Valid;
-import java.util.List;
 import org.example.msnutriamongodb.contract.IngredienteApi;
 import org.example.msnutriamongodb.dto.GetIngredienteDTO;
 import org.example.msnutriamongodb.dto.PostIngredienteDTO;
 import org.example.msnutriamongodb.dto.GetNomeIdIngredienteDTO;
 import org.example.msnutriamongodb.service.IngredienteService;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,17 +21,20 @@ public class IngredienteController implements IngredienteApi {
 
   @Override
   @GetMapping
-  public ResponseEntity<List<GetNomeIdIngredienteDTO>> getAllIngredientes() {
-    List<GetNomeIdIngredienteDTO> responseIngredienteDTO =
-        ingredienteService.buscarIngredientesCadastrados();
-    return new ResponseEntity<>(responseIngredienteDTO, HttpStatus.OK);
+  public ResponseEntity<Page<GetNomeIdIngredienteDTO>> getAllIngredientes(
+          @RequestParam(defaultValue = "1") int pagina
+  ) {
+    Page<GetNomeIdIngredienteDTO> responseIngredienteDTO =
+            ingredienteService.buscarIngredientesCadastrados(pagina);
+
+    return ResponseEntity.ok(responseIngredienteDTO);
   }
 
   @Override
   @GetMapping("/{id}")
   public ResponseEntity<GetIngredienteDTO> getIngredienteById(@PathVariable Integer id) {
     GetIngredienteDTO responseIngredienteDTO = ingredienteService.buscarIngredientePeloId(id);
-    return new ResponseEntity<>(responseIngredienteDTO, HttpStatus.OK);
+    return ResponseEntity.ok(responseIngredienteDTO);
   }
 
   @Override
@@ -41,6 +43,6 @@ public class IngredienteController implements IngredienteApi {
       @Valid @RequestBody PostIngredienteDTO ingrediente) {
     GetNomeIdIngredienteDTO responseIngredienteDTO =
         ingredienteService.criarIngrediente(ingrediente);
-    return new ResponseEntity<>(responseIngredienteDTO, HttpStatus.OK);
+    return ResponseEntity.ok(responseIngredienteDTO);
   }
 }
