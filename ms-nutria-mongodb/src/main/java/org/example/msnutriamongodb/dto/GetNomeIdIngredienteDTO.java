@@ -1,13 +1,13 @@
 package org.example.msnutriamongodb.dto;
 
-public class ResponseIngredienteDTO {
+public class GetNomeIdIngredienteDTO {
     Integer id;
     String nomeIngrediente;
 
-    public ResponseIngredienteDTO() {
+    public GetNomeIdIngredienteDTO() {
     }
 
-    public ResponseIngredienteDTO(Integer id, String nomeIngrediente) {
+    public GetNomeIdIngredienteDTO(Integer id, String nomeIngrediente) {
         this.id = id;
         this.nomeIngrediente = nomeIngrediente;
     }

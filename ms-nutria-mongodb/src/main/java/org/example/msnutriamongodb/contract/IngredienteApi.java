@@ -6,8 +6,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import java.util.List;
-import org.example.msnutriamongodb.dto.RequestIngredienteDTO;
-import org.example.msnutriamongodb.dto.ResponseIngredienteDTO;
+
+import org.example.msnutriamongodb.dto.GetIngredienteDTO;
+import org.example.msnutriamongodb.dto.PostIngredienteDTO;
+import org.example.msnutriamongodb.dto.GetNomeIdIngredienteDTO;
 import org.example.msnutriamongodb.dto.exceptiondto.ErrorDTO;
 import org.springframework.http.ResponseEntity;
 
@@ -23,10 +25,10 @@ public interface IngredienteApi {
         content =
             @Content(
                 mediaType = "application/json",
-                schema = @Schema(implementation = ResponseIngredienteDTO.class))),
+                schema = @Schema(implementation = GetNomeIdIngredienteDTO.class))),
     @ApiResponse(responseCode = "204", description = "Nenhum ingrediente encontrado")
   })
-  ResponseEntity<List<ResponseIngredienteDTO>> getAllIngredientes();
+  ResponseEntity<List<GetNomeIdIngredienteDTO>> getAllIngredientes();
 
   @Operation(
       summary = "Busca um ingrediente pelo ID",
@@ -38,7 +40,7 @@ public interface IngredienteApi {
         content =
             @Content(
                 mediaType = "application/json",
-                schema = @Schema(implementation = ResponseIngredienteDTO.class))),
+                schema = @Schema(implementation = GetNomeIdIngredienteDTO.class))),
     @ApiResponse(
         responseCode = "404",
         description = "Ingrediente não encontrado",
@@ -47,7 +49,7 @@ public interface IngredienteApi {
                 mediaType = "application/json",
                 schema = @Schema(implementation = ErrorDTO.class)))
   })
-  ResponseEntity<ResponseIngredienteDTO> getIngredienteById(Integer id);
+  ResponseEntity<GetIngredienteDTO> getIngredienteById(Integer id);
 
   @Operation(
       summary = "Cria um novo ingrediente",
@@ -59,7 +61,7 @@ public interface IngredienteApi {
         content =
             @Content(
                 mediaType = "application/json",
-                schema = @Schema(implementation = ResponseIngredienteDTO.class))),
+                schema = @Schema(implementation = GetNomeIdIngredienteDTO.class))),
     @ApiResponse(
         responseCode = "400",
         description = "Dados inválidos fornecidos para o cadastro",
@@ -68,5 +70,5 @@ public interface IngredienteApi {
                 mediaType = "application/json",
                 schema = @Schema(implementation = ErrorDTO.class)))
   })
-  ResponseEntity<ResponseIngredienteDTO> criarIngrediente(RequestIngredienteDTO ingrediente);
+  ResponseEntity<GetNomeIdIngredienteDTO> criarIngrediente(PostIngredienteDTO ingrediente);
 }

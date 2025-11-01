@@ -3,8 +3,10 @@ package org.example.msnutriamongodb.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import java.util.Optional;
-import org.example.msnutriamongodb.dto.RequestIngredienteDTO;
-import org.example.msnutriamongodb.dto.ResponseIngredienteDTO;
+
+import org.example.msnutriamongodb.dto.GetIngredienteDTO;
+import org.example.msnutriamongodb.dto.PostIngredienteDTO;
+import org.example.msnutriamongodb.dto.GetNomeIdIngredienteDTO;
 import org.example.msnutriamongodb.exception.DuplicateException;
 import org.example.msnutriamongodb.exception.NotFoundException;
 import org.example.msnutriamongodb.model.Ingrediente;
@@ -22,23 +24,23 @@ public class IngredienteService {
     this.objectMapper = objectMapper;
   }
 
-  public List<ResponseIngredienteDTO> buscarIngredientesCadastrados() {
+  public List<GetNomeIdIngredienteDTO> buscarIngredientesCadastrados() {
     return ingredienteRepository.findAll().stream()
-        .map(ingrediente -> objectMapper.convertValue(ingrediente, ResponseIngredienteDTO.class))
+        .map(ingrediente -> objectMapper.convertValue(ingrediente, GetNomeIdIngredienteDTO.class))
         .toList();
   }
 
-  public ResponseIngredienteDTO buscarIngredientePeloId(Integer id) {
+  public GetIngredienteDTO buscarIngredientePeloId(Integer id) {
     Optional<Ingrediente> ingrediente = ingredienteRepository.findById(id);
-    ResponseIngredienteDTO ingredienteDTO =
-        objectMapper.convertValue(ingrediente, ResponseIngredienteDTO.class);
+    GetIngredienteDTO ingredienteDTO =
+        objectMapper.convertValue(ingrediente, GetIngredienteDTO.class);
     if (ingredienteDTO == null) {
       throw new NotFoundException("O ingrediente não foi encontrado.");
     }
     return ingredienteDTO;
   }
 
-  public ResponseIngredienteDTO criarIngrediente(RequestIngredienteDTO ingredienteDTO) {
+  public GetNomeIdIngredienteDTO criarIngrediente(PostIngredienteDTO ingredienteDTO) {
     Integer proximoId = ingredienteRepository.findLastIngredienteId() + 1;
     Ingrediente ingrediente = objectMapper.convertValue(ingredienteDTO, Ingrediente.class);
     boolean ingredienteJaExiste =
@@ -48,6 +50,6 @@ public class IngredienteService {
     }
     ingrediente.setId(proximoId);
     ingredienteRepository.save(ingrediente);
-    return objectMapper.convertValue(ingrediente, ResponseIngredienteDTO.class);
+    return objectMapper.convertValue(ingrediente, GetNomeIdIngredienteDTO.class);
   }
 }
