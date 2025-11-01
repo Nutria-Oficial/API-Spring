@@ -49,12 +49,10 @@ public class IngredienteService {
   }
 
   public GetIngredienteDTO buscarIngredientePeloId(Integer id) {
-    Optional<Ingrediente> ingrediente = ingredienteRepository.findById(id);
+    Ingrediente ingrediente = ingredienteRepository.findById(id)
+            .orElseThrow(() -> new NotFoundException("O ingrediente não foi encontrado."));
     GetIngredienteDTO ingredienteDTO =
-        objectMapper.convertValue(ingrediente, GetIngredienteDTO.class);
-    if (ingredienteDTO == null) {
-      throw new NotFoundException("O ingrediente não foi encontrado.");
-    }
+            objectMapper.convertValue(ingrediente, GetIngredienteDTO.class);
     return ingredienteDTO;
   }
 

@@ -3,53 +3,53 @@ package org.example.msnutriamongodb.dto;
 public class GetIngredienteDTO {
     private Integer id;
     private String nomeIngrediente;
-    private double caloria;
-    private double carboidrato;
-    private double acucar;
-    private double proteina;
-    private double gorduraTotal;
-    private double gorduraSaturada;
-    private double sodio;
-    private double fibra;
-    private double agua;
-    private double gorduraMonoinsaturada;
-    private double gorduraPoliinsaturada;
-    private double colesterol;
-    private double alcool;
-    private double vitaminaB6;
-    private double vitaminaB12;
-    private double vitaminaC;
-    private double vitaminaD;
-    private double vitaminaE;
-    private double vitaminaK;
-    private double teobromina;
-    private double cafeina;
-    private double colina;
-    private double calcio;
-    private double fosforo;
-    private double magnesio;
-    private double potassio;
-    private double ferro;
-    private double zinco;
-    private double cobre;
-    private double selenio;
-    private double retinol;
-    private double tiamina;
-    private double riboflavina;
-    private double niacina;
-    private double folato;
+    private Double caloria;
+    private Double carboidrato;
+    private Double acucar;
+    private Double proteina;
+    private Double gorduraTotal;
+    private Double gorduraSaturada;
+    private Double sodio;
+    private Double fibra;
+    private Double agua;
+    private Double gorduraMonoinsaturada;
+    private Double gorduraPoliinsaturada;
+    private Double colesterol;
+    private Double alcool;
+    private Double vitaminaB6;
+    private Double vitaminaB12;
+    private Double vitaminaC;
+    private Double vitaminaD;
+    private Double vitaminaE;
+    private Double vitaminaK;
+    private Double teobromina;
+    private Double cafeina;
+    private Double colina;
+    private Double calcio;
+    private Double fosforo;
+    private Double magnesio;
+    private Double potassio;
+    private Double ferro;
+    private Double zinco;
+    private Double cobre;
+    private Double selenio;
+    private Double retinol;
+    private Double tiamina;
+    private Double riboflavina;
+    private Double niacina;
+    private Double folato;
 
     public GetIngredienteDTO() {
     }
 
-    public GetIngredienteDTO(Integer id, String nomeIngrediente, double caloria, double carboidrato,
-        double acucar, double proteina, double gorduraTotal, double gorduraSaturada, double sodio,
-        double fibra, double agua, double gorduraMonoinsaturada, double gorduraPoliinsaturada,
-        double colesterol, double alcool, double vitaminaB6, double vitaminaB12, double vitaminaC,
-        double vitaminaD, double vitaminaE, double vitaminaK, double teobromina, double cafeina,
-        double colina, double calcio, double fosforo, double magnesio, double potassio, double ferro,
-        double zinco, double cobre, double selenio, double retinol, double tiamina,
-        double riboflavina, double niacina, double folato) {
+    public GetIngredienteDTO(Integer id, String nomeIngrediente, Double caloria, Double carboidrato,
+        Double acucar, Double proteina, Double gorduraTotal, Double gorduraSaturada, Double sodio,
+        Double fibra, Double agua, Double gorduraMonoinsaturada, Double gorduraPoliinsaturada,
+        Double colesterol, Double alcool, Double vitaminaB6, Double vitaminaB12, Double vitaminaC,
+        Double vitaminaD, Double vitaminaE, Double vitaminaK, Double teobromina, Double cafeina,
+        Double colina, Double calcio, Double fosforo, Double magnesio, Double potassio, Double ferro,
+        Double zinco, Double cobre, Double selenio, Double retinol, Double tiamina,
+        Double riboflavina, Double niacina, Double folato) {
         this.id = id;
         this.nomeIngrediente = nomeIngrediente;
         this.caloria = caloria;
@@ -107,283 +107,283 @@ public class GetIngredienteDTO {
         this.nomeIngrediente = nomeIngrediente;
     }
 
-    public double getCaloria() {
+    public Double getCaloria() {
         return caloria;
     }
 
-    public void setCaloria(double caloria) {
+    public void setCaloria(Double caloria) {
         this.caloria = caloria;
     }
 
-    public double getCarboidrato() {
+    public Double getCarboidrato() {
         return carboidrato;
     }
 
-    public void setCarboidrato(double carboidrato) {
+    public void setCarboidrato(Double carboidrato) {
         this.carboidrato = carboidrato;
     }
 
-    public double getAcucar() {
+    public Double getAcucar() {
         return acucar;
     }
 
-    public void setAcucar(double acucar) {
+    public void setAcucar(Double acucar) {
         this.acucar = acucar;
     }
 
-    public double getProteina() {
+    public Double getProteina() {
         return proteina;
     }
 
-    public void setProteina(double proteina) {
+    public void setProteina(Double proteina) {
         this.proteina = proteina;
     }
 
-    public double getGorduraTotal() {
+    public Double getGorduraTotal() {
         return gorduraTotal;
     }
 
-    public void setGorduraTotal(double gorduraTotal) {
+    public void setGorduraTotal(Double gorduraTotal) {
         this.gorduraTotal = gorduraTotal;
     }
 
-    public double getGorduraSaturada() {
+    public Double getGorduraSaturada() {
         return gorduraSaturada;
     }
 
-    public void setGorduraSaturada(double gorduraSaturada) {
+    public void setGorduraSaturada(Double gorduraSaturada) {
         this.gorduraSaturada = gorduraSaturada;
     }
 
-    public double getSodio() {
+    public Double getSodio() {
         return sodio;
     }
 
-    public void setSodio(double sodio) {
+    public void setSodio(Double sodio) {
         this.sodio = sodio;
     }
 
-    public double getFibra() {
+    public Double getFibra() {
         return fibra;
     }
 
-    public void setFibra(double fibra) {
+    public void setFibra(Double fibra) {
         this.fibra = fibra;
     }
 
-    public double getAgua() {
+    public Double getAgua() {
         return agua;
     }
 
-    public void setAgua(double agua) {
+    public void setAgua(Double agua) {
         this.agua = agua;
     }
 
-    public double getGorduraMonoinsaturada() {
+    public Double getGorduraMonoinsaturada() {
         return gorduraMonoinsaturada;
     }
 
-    public void setGorduraMonoinsaturada(double gorduraMonoinsaturada) {
+    public void setGorduraMonoinsaturada(Double gorduraMonoinsaturada) {
         this.gorduraMonoinsaturada = gorduraMonoinsaturada;
     }
 
-    public double getGorduraPoliinsaturada() {
+    public Double getGorduraPoliinsaturada() {
         return gorduraPoliinsaturada;
     }
 
-    public void setGorduraPoliinsaturada(double gorduraPoliinsaturada) {
+    public void setGorduraPoliinsaturada(Double gorduraPoliinsaturada) {
         this.gorduraPoliinsaturada = gorduraPoliinsaturada;
     }
 
-    public double getColesterol() {
+    public Double getColesterol() {
         return colesterol;
     }
 
-    public void setColesterol(double colesterol) {
+    public void setColesterol(Double colesterol) {
         this.colesterol = colesterol;
     }
 
-    public double getAlcool() {
+    public Double getAlcool() {
         return alcool;
     }
 
-    public void setAlcool(double alcool) {
+    public void setAlcool(Double alcool) {
         this.alcool = alcool;
     }
 
-    public double getVitaminaB6() {
+    public Double getVitaminaB6() {
         return vitaminaB6;
     }
 
-    public void setVitaminaB6(double vitaminaB6) {
+    public void setVitaminaB6(Double vitaminaB6) {
         this.vitaminaB6 = vitaminaB6;
     }
 
-    public double getVitaminaB12() {
+    public Double getVitaminaB12() {
         return vitaminaB12;
     }
 
-    public void setVitaminaB12(double vitaminaB12) {
+    public void setVitaminaB12(Double vitaminaB12) {
         this.vitaminaB12 = vitaminaB12;
     }
 
-    public double getVitaminaC() {
+    public Double getVitaminaC() {
         return vitaminaC;
     }
 
-    public void setVitaminaC(double vitaminaC) {
+    public void setVitaminaC(Double vitaminaC) {
         this.vitaminaC = vitaminaC;
     }
 
-    public double getVitaminaD() {
+    public Double getVitaminaD() {
         return vitaminaD;
     }
 
-    public void setVitaminaD(double vitaminaD) {
+    public void setVitaminaD(Double vitaminaD) {
         this.vitaminaD = vitaminaD;
     }
 
-    public double getVitaminaE() {
+    public Double getVitaminaE() {
         return vitaminaE;
     }
 
-    public void setVitaminaE(double vitaminaE) {
+    public void setVitaminaE(Double vitaminaE) {
         this.vitaminaE = vitaminaE;
     }
 
-    public double getVitaminaK() {
+    public Double getVitaminaK() {
         return vitaminaK;
     }
 
-    public void setVitaminaK(double vitaminaK) {
+    public void setVitaminaK(Double vitaminaK) {
         this.vitaminaK = vitaminaK;
     }
 
-    public double getTeobromina() {
+    public Double getTeobromina() {
         return teobromina;
     }
 
-    public void setTeobromina(double teobromina) {
+    public void setTeobromina(Double teobromina) {
         this.teobromina = teobromina;
     }
 
-    public double getCafeina() {
+    public Double getCafeina() {
         return cafeina;
     }
 
-    public void setCafeina(double cafeina) {
+    public void setCafeina(Double cafeina) {
         this.cafeina = cafeina;
     }
 
-    public double getColina() {
+    public Double getColina() {
         return colina;
     }
 
-    public void setColina(double colina) {
+    public void setColina(Double colina) {
         this.colina = colina;
     }
 
-    public double getCalcio() {
+    public Double getCalcio() {
         return calcio;
     }
 
-    public void setCalcio(double calcio) {
+    public void setCalcio(Double calcio) {
         this.calcio = calcio;
     }
 
-    public double getFosforo() {
+    public Double getFosforo() {
         return fosforo;
     }
 
-    public void setFosforo(double fosforo) {
+    public void setFosforo(Double fosforo) {
         this.fosforo = fosforo;
     }
 
-    public double getMagnesio() {
+    public Double getMagnesio() {
         return magnesio;
     }
 
-    public void setMagnesio(double magnesio) {
+    public void setMagnesio(Double magnesio) {
         this.magnesio = magnesio;
     }
 
-    public double getPotassio() {
+    public Double getPotassio() {
         return potassio;
     }
 
-    public void setPotassio(double potassio) {
+    public void setPotassio(Double potassio) {
         this.potassio = potassio;
     }
 
-    public double getFerro() {
+    public Double getFerro() {
         return ferro;
     }
 
-    public void setFerro(double ferro) {
+    public void setFerro(Double ferro) {
         this.ferro = ferro;
     }
 
-    public double getZinco() {
+    public Double getZinco() {
         return zinco;
     }
 
-    public void setZinco(double zinco) {
+    public void setZinco(Double zinco) {
         this.zinco = zinco;
     }
 
-    public double getCobre() {
+    public Double getCobre() {
         return cobre;
     }
 
-    public void setCobre(double cobre) {
+    public void setCobre(Double cobre) {
         this.cobre = cobre;
     }
 
-    public double getSelenio() {
+    public Double getSelenio() {
         return selenio;
     }
 
-    public void setSelenio(double selenio) {
+    public void setSelenio(Double selenio) {
         this.selenio = selenio;
     }
 
-    public double getRetinol() {
+    public Double getRetinol() {
         return retinol;
     }
 
-    public void setRetinol(double retinol) {
+    public void setRetinol(Double retinol) {
         this.retinol = retinol;
     }
 
-    public double getTiamina() {
+    public Double getTiamina() {
         return tiamina;
     }
 
-    public void setTiamina(double tiamina) {
+    public void setTiamina(Double tiamina) {
         this.tiamina = tiamina;
     }
 
-    public double getRiboflavina() {
+    public Double getRiboflavina() {
         return riboflavina;
     }
 
-    public void setRiboflavina(double riboflavina) {
+    public void setRiboflavina(Double riboflavina) {
         this.riboflavina = riboflavina;
     }
 
-    public double getNiacina() {
+    public Double getNiacina() {
         return niacina;
     }
 
-    public void setNiacina(double niacina) {
+    public void setNiacina(Double niacina) {
         this.niacina = niacina;
     }
 
-    public double getFolato() {
+    public Double getFolato() {
         return folato;
     }
 
-    public void setFolato(double folato) {
+    public void setFolato(Double folato) {
         this.folato = folato;
     }
 }
