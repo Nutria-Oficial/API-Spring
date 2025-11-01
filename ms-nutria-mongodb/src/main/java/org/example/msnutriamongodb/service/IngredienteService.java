@@ -3,6 +3,7 @@ package org.example.msnutriamongodb.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.example.msnutriamongodb.dto.GetIngredienteDTO;
 import org.example.msnutriamongodb.dto.PostIngredienteDTO;
@@ -27,6 +28,7 @@ public class IngredienteService {
     this.objectMapper = objectMapper;
   }
 
+  // busca os ingredientes cadastrados, usando paginação
   public Page<GetNomeIdIngredienteDTO> buscarIngredientesCadastrados(int page) {
     int pageSize = 100;
     int pageNumber;
@@ -44,7 +46,6 @@ public class IngredienteService {
             objectMapper.convertValue(ingrediente, GetNomeIdIngredienteDTO.class)
     );
   }
-
 
   public GetIngredienteDTO buscarIngredientePeloId(Integer id) {
     Optional<Ingrediente> ingrediente = ingredienteRepository.findById(id);
@@ -67,5 +68,19 @@ public class IngredienteService {
     ingrediente.setId(proximoId);
     ingredienteRepository.save(ingrediente);
     return objectMapper.convertValue(ingrediente, GetNomeIdIngredienteDTO.class);
+  }
+
+  public List<GetNomeIdIngredienteDTO> buscarPorNomeExato(String nome) {
+    List<Ingrediente> resultados = ingredienteRepository.findByNomeIngrediente(nome);
+    return resultados.stream()
+            .map(i -> objectMapper.convertValue(i, GetNomeIdIngredienteDTO.class))
+            .collect(Collectors.toList());
+  }
+
+  public List<GetNomeIdIngredienteDTO> buscarPorInicioDoNome(String nome) {
+    List<Ingrediente> resultados = ingredienteRepository.findByNomeIngredienteRegex("^" + nome + ".*");
+    return resultados.stream()
+            .map(i -> objectMapper.convertValue(i, GetNomeIdIngredienteDTO.class))
+            .collect(Collectors.toList());
   }
 }

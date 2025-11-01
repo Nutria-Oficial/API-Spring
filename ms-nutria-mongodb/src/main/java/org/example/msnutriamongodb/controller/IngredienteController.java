@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/ingredientes")
 public class IngredienteController implements IngredienteApi {
@@ -43,6 +45,22 @@ public class IngredienteController implements IngredienteApi {
       @Valid @RequestBody PostIngredienteDTO ingrediente) {
     GetNomeIdIngredienteDTO responseIngredienteDTO =
         ingredienteService.criarIngrediente(ingrediente);
+    return ResponseEntity.ok(responseIngredienteDTO);
+  }
+
+  @Override
+  @GetMapping("/nomeExato/{nome}")
+  public ResponseEntity<List<GetNomeIdIngredienteDTO>> buscarPorNomeExato(@PathVariable String nome) {
+    List<GetNomeIdIngredienteDTO> responseIngredienteDTO =
+        ingredienteService.buscarPorNomeExato(nome);
+    return ResponseEntity.ok(responseIngredienteDTO);
+  }
+
+  @Override
+  @GetMapping("/nomeParcial/{nome}")
+  public ResponseEntity<List<GetNomeIdIngredienteDTO>> buscarPorInicioDoNome(@PathVariable String nome) {
+    List<GetNomeIdIngredienteDTO> responseIngredienteDTO =
+        ingredienteService.buscarPorInicioDoNome(nome);
     return ResponseEntity.ok(responseIngredienteDTO);
   }
 }

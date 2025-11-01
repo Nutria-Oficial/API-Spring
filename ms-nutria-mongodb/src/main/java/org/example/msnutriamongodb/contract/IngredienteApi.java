@@ -14,6 +14,7 @@ import org.example.msnutriamongodb.dto.exceptiondto.ErrorDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 public interface IngredienteApi {
@@ -74,4 +75,48 @@ public interface IngredienteApi {
                 schema = @Schema(implementation = ErrorDTO.class)))
   })
   ResponseEntity<GetNomeIdIngredienteDTO> criarIngrediente(PostIngredienteDTO ingrediente);
+
+    @Operation(
+            summary = "Busca um ingrediente com o nome que foi passado",
+            description = "Busca um ingrediente no banco, exatamente igual ao nome que foi passado")
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Ingrediente encontrado com sucesso",
+                    content =
+                    @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = GetNomeIdIngredienteDTO.class))),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Nenhum ingrediente encontrado",
+                    content =
+                    @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorDTO.class)))
+    })
+    @GetMapping("/nomeExato/{nome}")
+    ResponseEntity<List<GetNomeIdIngredienteDTO>> buscarPorNomeExato(@PathVariable String nome);
+
+    @Operation(
+            summary = "Busca os ingredientes que começam com o nome que foi passado",
+            description = "Busca os ingredientes no banco, que começam exatamente com o começo do nome que foi passado")
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Ingrediente encontrado com sucesso",
+                    content =
+                    @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = GetNomeIdIngredienteDTO.class))),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Nenhum ingrediente encontrado",
+                    content =
+                    @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorDTO.class)))
+    })
+    @GetMapping("/nomeParcial/{nome}")
+    ResponseEntity<List<GetNomeIdIngredienteDTO>> buscarPorInicioDoNome(@PathVariable String nome);
 }
