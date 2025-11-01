@@ -21,7 +21,7 @@ public interface IngredienteApi {
 
   @Operation(
       summary = "Lista os ingredientes cadastrados, paginando os resultados",
-      description = "Retorna os ingredientes cadastrados no banco de dados, paginando os resultados. Default da página = 1")
+      description = "Retorna os ingredientes cadastrados no banco de dados, paginando os resultados, com 50 ingredientes por página. Default da página = 1")
   @ApiResponses({
     @ApiResponse(
         responseCode = "200",

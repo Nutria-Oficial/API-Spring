@@ -31,7 +31,7 @@ public class IngredienteService {
 
   // busca os ingredientes cadastrados, usando paginação
   public Page<GetNomeIdIngredienteDTO> buscarIngredientesCadastrados(int page) {
-    int pageSize = 100;
+    int pageSize = 50;
     int pageNumber;
 
     if (page < 1) {
