@@ -14,109 +14,109 @@ public class Ingrediente {
   private String nomeIngrediente;
 
   @Field(name = "nCaloria(kcal)")
-  private double caloria;
+  private Double caloria;
 
   @Field(name = "nCarboidrato(g)")
-  private double carboidrato;
+  private Double carboidrato;
 
   @Field(name = "nAcucar(g)")
-  private double acucar;
+  private Double acucar;
 
   @Field(name = "nProteina(g)")
-  private double proteina;
+  private Double proteina;
 
   @Field(name = "nGorduraTotal(g)")
-  private double gorduraTotal;
+  private Double gorduraTotal;
 
   @Field(name = "nGorduraSaturada(g)")
-  private double gorduraSaturada;
+  private Double gorduraSaturada;
 
   @Field(name = "nSodio(mg)")
-  private double sodio;
+  private Double sodio;
 
   @Field(name = "nFibra(g)")
-  private double fibra;
+  private Double fibra;
 
   @Field(name = "nAgua(g)")
-  private double agua;
+  private Double agua;
 
   @Field(name = "nGorduraMonoinsaturada(g)")
-  private double gorduraMonoinsaturada;
+  private Double gorduraMonoinsaturada;
 
   @Field(name = "nGorduraPoliinsaturada(g)")
-  private double gorduraPoliinsaturada;
+  private Double gorduraPoliinsaturada;
 
   @Field(name = "nColesterol(mg)")
-  private double colesterol;
+  private Double colesterol;
 
   @Field(name = "nAlcool(g)")
-  private double alcool;
+  private Double alcool;
 
   @Field(name = "nVitB6(mg)")
-  private double vitaminaB6;
+  private Double vitaminaB6;
 
   @Field(name = "nVitB12(mcg)")
-  private double vitaminaB12;
+  private Double vitaminaB12;
 
   @Field(name = "nVitC(mg)")
-  private double vitaminaC;
+  private Double vitaminaC;
 
   @Field(name = "nVitD(mcg)")
-  private double vitaminaD;
+  private Double vitaminaD;
 
   @Field(name = "nVitE(mg)")
-  private double vitaminaE;
+  private Double vitaminaE;
 
   @Field(name = "nVitK(mcg)")
-  private double vitaminaK;
+  private Double vitaminaK;
 
   @Field(name = "nTeobromina(mg)")
-  private double teobromina;
+  private Double teobromina;
 
   @Field(name = "nCafeina(mg)")
-  private double cafeina;
+  private Double cafeina;
 
   @Field(name = "nColina(mg)")
-  private double colina;
+  private Double colina;
 
   @Field(name = "nCalcio(mg)")
-  private double calcio;
+  private Double calcio;
 
   @Field(name = "nFosforo(mg)")
-  private double fosforo;
+  private Double fosforo;
 
   @Field(name = "nMagnesio(mg)")
-  private double magnesio;
+  private Double magnesio;
 
   @Field(name = "nPotassio(mg)")
-  private double potassio;
+  private Double potassio;
 
   @Field(name = "nFerro(mg)")
-  private double ferro;
+  private Double ferro;
 
   @Field(name = "nZinco(mg)")
-  private double zinco;
+  private Double zinco;
 
   @Field(name = "nCobre(mg)")
-  private double cobre;
+  private Double cobre;
 
   @Field(name = "nSelenio(mcg)")
-  private double selenio;
+  private Double selenio;
 
   @Field(name = "nRetinol(mcg)")
-  private double retinol;
+  private Double retinol;
 
   @Field(name = "nTiamina(mg)")
-  private double tiamina;
+  private Double tiamina;
 
   @Field(name = "nRiboflavina(mg)")
-  private double riboflavina;
+  private Double riboflavina;
 
   @Field(name = "nNiacina(mg)")
-  private double niacina;
+  private Double niacina;
 
   @Field(name = "nFolato(mcg)")
-  private double folato;
+  private Double folato;
 
   // getters e setters
 
@@ -128,143 +128,143 @@ public class Ingrediente {
     this.nomeIngrediente = nomeIngrediente;
   }
 
-  public void setCaloria(double caloria) {
+  public void setCaloria(Double caloria) {
     this.caloria = caloria;
   }
 
-  public void setProteina(double proteina) {
+  public void setProteina(Double proteina) {
     this.proteina = proteina;
   }
 
-  public void setCarboidrato(double carboidrato) {
+  public void setCarboidrato(Double carboidrato) {
     this.carboidrato = carboidrato;
   }
 
-  public void setAcucar(double acucar) {
+  public void setAcucar(Double acucar) {
     this.acucar = acucar;
   }
 
-  public void setFibra(double fibra) {
+  public void setFibra(Double fibra) {
     this.fibra = fibra;
   }
 
-  public void setGorduraTotal(double gorduraTotal) {
+  public void setGorduraTotal(Double gorduraTotal) {
     this.gorduraTotal = gorduraTotal;
   }
 
-  public void setGorduraSaturada(double gorduraSaturada) {
+  public void setGorduraSaturada(Double gorduraSaturada) {
     this.gorduraSaturada = gorduraSaturada;
   }
 
-  public void setGorduraMonoinsaturada(double gorduraMonoinsaturada) {
+  public void setGorduraMonoinsaturada(Double gorduraMonoinsaturada) {
     this.gorduraMonoinsaturada = gorduraMonoinsaturada;
   }
 
-  public void setGorduraPoliinsaturada(double gorduraPoliinsaturada) {
+  public void setGorduraPoliinsaturada(Double gorduraPoliinsaturada) {
     this.gorduraPoliinsaturada = gorduraPoliinsaturada;
   }
 
-  public void setColesterol(double colesterol) {
+  public void setColesterol(Double colesterol) {
     this.colesterol = colesterol;
   }
 
-  public void setRetinol(double retinol) {
+  public void setRetinol(Double retinol) {
     this.retinol = retinol;
   }
 
-  public void setTiamina(double tiamina) {
+  public void setTiamina(Double tiamina) {
     this.tiamina = tiamina;
   }
 
-  public void setRiboflavina(double riboflavina) {
+  public void setRiboflavina(Double riboflavina) {
     this.riboflavina = riboflavina;
   }
 
-  public void setNiacina(double niacina) {
+  public void setNiacina(Double niacina) {
     this.niacina = niacina;
   }
 
-  public void setVitaminaB6(double vitaminaB6) {
+  public void setVitaminaB6(Double vitaminaB6) {
     this.vitaminaB6 = vitaminaB6;
   }
 
-  public void setFolato(double folato) {
+  public void setFolato(Double folato) {
     this.folato = folato;
   }
 
-  public void setColina(double colina) {
+  public void setColina(Double colina) {
     this.colina = colina;
   }
 
-  public void setVitaminaB12(double vitaminaB12) {
+  public void setVitaminaB12(Double vitaminaB12) {
     this.vitaminaB12 = vitaminaB12;
   }
 
-  public void setVitaminaC(double vitaminaC) {
+  public void setVitaminaC(Double vitaminaC) {
     this.vitaminaC = vitaminaC;
   }
 
-  public void setVitaminaD(double vitaminaD) {
+  public void setVitaminaD(Double vitaminaD) {
     this.vitaminaD = vitaminaD;
   }
 
-  public void setVitaminaE(double vitaminaE) {
+  public void setVitaminaE(Double vitaminaE) {
     this.vitaminaE = vitaminaE;
   }
 
-  public void setVitaminaK(double vitaminaK) {
+  public void setVitaminaK(Double vitaminaK) {
     this.vitaminaK = vitaminaK;
   }
 
-  public void setCalcio(double calcio) {
+  public void setCalcio(Double calcio) {
     this.calcio = calcio;
   }
 
-  public void setFosforo(double fosforo) {
+  public void setFosforo(Double fosforo) {
     this.fosforo = fosforo;
   }
 
-  public void setMagnesio(double magnesio) {
+  public void setMagnesio(Double magnesio) {
     this.magnesio = magnesio;
   }
 
-  public void setFerro(double ferro) {
+  public void setFerro(Double ferro) {
     this.ferro = ferro;
   }
 
-  public void setZinco(double zinco) {
+  public void setZinco(Double zinco) {
     this.zinco = zinco;
   }
 
-  public void setCobre(double cobre) {
+  public void setCobre(Double cobre) {
     this.cobre = cobre;
   }
 
-  public void setSelenio(double selenio) {
+  public void setSelenio(Double selenio) {
     this.selenio = selenio;
   }
 
-  public void setPotassio(double potassio) {
+  public void setPotassio(Double potassio) {
     this.potassio = potassio;
   }
 
-  public void setSodio(double sodio) {
+  public void setSodio(Double sodio) {
     this.sodio = sodio;
   }
 
-  public void setCafeina(double cafeina) {
+  public void setCafeina(Double cafeina) {
     this.cafeina = cafeina;
   }
 
-  public void setTeobromina(double teobromina) {
+  public void setTeobromina(Double teobromina) {
     this.teobromina = teobromina;
   }
 
-  public void setAlcool(double alcool) {
+  public void setAlcool(Double alcool) {
     this.alcool = alcool;
   }
 
-  public void setAgua(double agua) {
+  public void setAgua(Double agua) {
     this.agua = agua;
   }
 
@@ -276,143 +276,143 @@ public class Ingrediente {
     return nomeIngrediente;
   }
 
-  public double getCaloria() {
+  public Double getCaloria() {
     return caloria;
   }
 
-  public double getProteina() {
+  public Double getProteina() {
     return proteina;
   }
 
-  public double getCarboidrato() {
+  public Double getCarboidrato() {
     return carboidrato;
   }
 
-  public double getAcucar() {
+  public Double getAcucar() {
     return acucar;
   }
 
-  public double getFibra() {
+  public Double getFibra() {
     return fibra;
   }
 
-  public double getGorduraTotal() {
+  public Double getGorduraTotal() {
     return gorduraTotal;
   }
 
-  public double getGorduraSaturada() {
+  public Double getGorduraSaturada() {
     return gorduraSaturada;
   }
 
-  public double getGorduraMonoinsaturada() {
+  public Double getGorduraMonoinsaturada() {
     return gorduraMonoinsaturada;
   }
 
-  public double getGorduraPoliinsaturada() {
+  public Double getGorduraPoliinsaturada() {
     return gorduraPoliinsaturada;
   }
 
-  public double getColesterol() {
+  public Double getColesterol() {
     return colesterol;
   }
 
-  public double getRetinol() {
+  public Double getRetinol() {
     return retinol;
   }
 
-  public double getTiamina() {
+  public Double getTiamina() {
     return tiamina;
   }
 
-  public double getRiboflavina() {
+  public Double getRiboflavina() {
     return riboflavina;
   }
 
-  public double getNiacina() {
+  public Double getNiacina() {
     return niacina;
   }
 
-  public double getVitaminaB6() {
+  public Double getVitaminaB6() {
     return vitaminaB6;
   }
 
-  public double getFolato() {
+  public Double getFolato() {
     return folato;
   }
 
-  public double getColina() {
+  public Double getColina() {
     return colina;
   }
 
-  public double getVitaminaB12() {
+  public Double getVitaminaB12() {
     return vitaminaB12;
   }
 
-  public double getVitaminaC() {
+  public Double getVitaminaC() {
     return vitaminaC;
   }
 
-  public double getVitaminaD() {
+  public Double getVitaminaD() {
     return vitaminaD;
   }
 
-  public double getVitaminaE() {
+  public Double getVitaminaE() {
     return vitaminaE;
   }
 
-  public double getVitaminaK() {
+  public Double getVitaminaK() {
     return vitaminaK;
   }
 
-  public double getCalcio() {
+  public Double getCalcio() {
     return calcio;
   }
 
-  public double getFosforo() {
+  public Double getFosforo() {
     return fosforo;
   }
 
-  public double getMagnesio() {
+  public Double getMagnesio() {
     return magnesio;
   }
 
-  public double getFerro() {
+  public Double getFerro() {
     return ferro;
   }
 
-  public double getZinco() {
+  public Double getZinco() {
     return zinco;
   }
 
-  public double getCobre() {
+  public Double getCobre() {
     return cobre;
   }
 
-  public double getSelenio() {
+  public Double getSelenio() {
     return selenio;
   }
 
-  public double getPotassio() {
+  public Double getPotassio() {
     return potassio;
   }
 
-  public double getSodio() {
+  public Double getSodio() {
     return sodio;
   }
 
-  public double getCafeina() {
+  public Double getCafeina() {
     return cafeina;
   }
 
-  public double getTeobromina() {
+  public Double getTeobromina() {
     return teobromina;
   }
 
-  public double getAlcool() {
+  public Double getAlcool() {
     return alcool;
   }
 
-  public double getAgua() {
+  public Double getAgua() {
     return agua;
   }
 }
