@@ -81,9 +81,14 @@ public class IngredienteService {
   public List<GetNomeIdIngredienteDTO> buscarPorInicioDoNome(String nome) {
     String regex = "^" + Pattern.quote(nome);
     List<Ingrediente> resultados = ingredienteRepository.findByNomeIngredienteRegex(regex);
-
+    if (resultados.isEmpty()) {
+      throw new NotFoundException("Nenhum ingrediente encontrado para: " + nome);
+    }
     return resultados.stream()
-            .map(ingrediente -> objectMapper.convertValue(ingrediente, GetNomeIdIngredienteDTO.class))
+            .map(ingrediente -> new GetNomeIdIngredienteDTO(
+                    ingrediente.getId(),
+                    ingrediente.getNomeIngrediente()
+            ))
             .collect(Collectors.toList());
   }
 }
