@@ -1,14 +1,14 @@
 package org.example.msnutriamongodb.dto;
 
-public class RequestChatPOST{
+public class PostChatDTO {
     String pergunta;
     int nCdUser;
     int iChat;
 
-    public RequestChatPOST() {
+    public PostChatDTO() {
     }
 
-    public RequestChatPOST(String pergunta, int nCdUser, int iChat) {
+    public PostChatDTO(String pergunta, int nCdUser, int iChat) {
         this.pergunta = pergunta;
         this.nCdUser = nCdUser;
         this.iChat = iChat;

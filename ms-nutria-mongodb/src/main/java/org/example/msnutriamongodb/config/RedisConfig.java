@@ -1,4 +1,5 @@
 package org.example.msnutriamongodb.config;
+// Padrão de projeto utilizado: Factory Method e Builder Pattern
 
 import io.lettuce.core.RedisURI;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,8 +27,10 @@ public class RedisConfig {
     config.setPort(uri.getPort());
     config.setPassword(RedisPassword.of(uri.getPassword()));
 
+    // O Builder Pattern é usado aqui pela biblioteca Lettuce
     LettuceClientConfiguration clientConfig = LettuceClientConfiguration.builder().useSsl().build();
 
+    // O Factory Method está fazendo a criação encapsulada de uma fábrica de conexões Redis
     return new LettuceConnectionFactory(config, clientConfig);
   }
 

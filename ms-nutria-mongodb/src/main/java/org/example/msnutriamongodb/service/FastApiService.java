@@ -1,5 +1,9 @@
 package org.example.msnutriamongodb.service;
 
+// Padrão de Projeto utilizado: Factory Method e Builder Pattern
+// Estamos usando o Builder Pattern para criar o WebClient
+// Estamos usando o Factory Method para criar o ReactorClientHttpConnector
+
 import java.time.Duration;
 import org.example.msnutriamongodb.dto.exceptiondto.ErrorDTO;
 import org.example.msnutriamongodb.exception.DatabaseInsertException;
@@ -17,6 +21,7 @@ public class FastApiService {
   public FastApiService(WebClient.Builder builder, @Value("${fastapi.url}") String fastApiUrl) {
     HttpClient httpClient =
         HttpClient.create().responseTimeout(Duration.ofSeconds(30));
+
 
     this.webClient =
         builder
